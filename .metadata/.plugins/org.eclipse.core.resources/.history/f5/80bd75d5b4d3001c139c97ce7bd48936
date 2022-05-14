@@ -1,0 +1,18 @@
+package eva03.ejercicio02;
+
+public class Viajante {
+
+	String DNI, nombre;
+	int antiguedad, dist_recorrida, ventas;
+	
+	public Viajante(String DNI, String nombre, int antiguedad, int dist_recorrida, int ventas) {
+		
+		this.DNI=DNI;
+		this.nombre=nombre;
+		this.antiguedad=antiguedad;
+		this.dist_recorrida=dist_recorrida;
+		this.ventas=ventas;
+		
+	}
+	
+}

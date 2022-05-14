@@ -1,0 +1,27 @@
+package eva03.ejercicio01;
+
+public class Sancion { // Clase Sancion
+
+	// Propiedades
+	String fecha, motivo;
+	String importe;
+	
+	public Sancion(String fecha, String motivo, String importe) {	
+		this.fecha=fecha;
+		this.motivo=motivo;
+		this.importe=importe;
+	}
+	
+	// Sobrecarga de constructores
+	public Sancion(String entrada) {
+		
+		
+	}
+	
+	@Override
+	public String toString() {
+		String salida="."+fecha+"|"+motivo+"|"+importe+";";
+		return salida;
+	}
+
+}

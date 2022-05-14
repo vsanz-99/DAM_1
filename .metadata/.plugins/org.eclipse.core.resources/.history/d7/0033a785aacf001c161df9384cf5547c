@@ -1,0 +1,22 @@
+package ejercicio03;
+
+/**
+ * <p><i>Archivo: Ficheros_Prueba</i></p>
+ * <p>Escribir un programa que guarde en un fichero el contenido
+ * de otros dos ficheros. En el fichero resultante apareceran
+ * las lineas de los primeros dos ficheros mezcladas (1a linea del 1er fichero, 
+ * 2a linea del 2o fichero, ...).</p>
+ * <p><i>Argumentos: ficheros de origen y fichero de destino.</i></p>
+ * <p>Los ficheros de origen pueden tener tamannos distintos.</p>
+ * @since 09/05/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class Ficheros_Prueba {
+
+	public static void main(String[] args) {
+
+
+	}
+
+}

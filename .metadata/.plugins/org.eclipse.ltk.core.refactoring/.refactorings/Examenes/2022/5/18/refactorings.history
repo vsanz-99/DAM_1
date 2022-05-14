@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Examenes/src/eva02/first&apos; to &apos;primer_examen&apos;" description="Rename resource &apos;first&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/eva02/first" name="primer_examen" stamp="1651946425643" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;Examenes/src/eva02/second&apos; to &apos;segundo_examen&apos;" description="Rename resource &apos;second&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/eva02/second" name="segundo_examen" stamp="1651946435247" updateReferences="true"/>
+</session>

@@ -1,0 +1,9 @@
+package eva03.ejercicio01;
+
+public class Vehiculo {
+
+	public Vehiculo() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

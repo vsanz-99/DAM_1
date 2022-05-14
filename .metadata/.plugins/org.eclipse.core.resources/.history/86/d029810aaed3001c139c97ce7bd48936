@@ -1,0 +1,45 @@
+package colecciones_diccionarios;
+import java.lang.*;
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.Collections;
+
+/**
+ * <p>Ordenar 10 numeros enteros introducidos por teclado 
+ * y almacenarlos en un objeto de la clase ArrayList.</p>
+ * @since 14/05/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class S10Ejercicio03 {
+
+	public static void main(String[] args) {
+
+		ArrayList<Integer> a=new ArrayList<Integer>();
+
+		System.out.println("\tIntroduzca 10 numeros enteros: ");
+
+		for (int i=0; i<10; i++) {
+			a.add(Integer.parseInt(System.console().readLine()));
+		}
+
+		System.out.println("\tLista original: "+a);
+
+		Collections.sort(a);
+
+		System.out.println("\tLista ordenada de menor a mayor: "+a);
+
+		// Descomentar el siguiente bloque para ordenar la lista de mayor a
+		// menor
+		/*
+	      ArrayList<Integer> b=new ArrayList<Integer>();
+	      for(int n : a) {
+	      	b.add(0, n);
+	      }
+
+	      System.out.print("\tLista ordenada de mayor a menor: "+b);
+		 */
+
+	}
+
+}

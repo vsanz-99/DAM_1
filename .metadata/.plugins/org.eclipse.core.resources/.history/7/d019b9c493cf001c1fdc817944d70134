@@ -1,0 +1,10 @@
+package ficheros_directorios;
+
+public class Creando {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

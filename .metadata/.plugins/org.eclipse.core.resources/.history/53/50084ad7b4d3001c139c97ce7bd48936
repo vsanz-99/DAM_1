@@ -1,0 +1,18 @@
+package eva03.ejercicio02;
+
+public class Venta {
+
+	String fecha, cliente;
+	char estado_cobro;
+	double importe;
+	
+	public Venta(String fecha, String cliente, double importe, char estado_cobro) {
+		
+		this.fecha=fecha;
+		this.cliente=cliente;
+		this.importe=importe;
+		this.estado_cobro=estado_cobro;
+	
+	}
+	
+}

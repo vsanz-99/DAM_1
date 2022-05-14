@@ -1,0 +1,30 @@
+package poo;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.Timer;
+
+public class PruebaTemporizador {
+
+	public static void main(String[] args) {
+	
+		Timer mitemporizador=new Timer(5000, oyente);
+		
+		
+
+	}
+
+}
+
+class DameLaHora implements ActionListener {
+
+	public void actionPerformed(ActionEvent e) {
+
+		Date ahora=new Date();
+
+		System.out.println("\tTe pongo la hora cada 5 sg: "+ahora); // Cada 5 segundos
+		// almacena en la variable 'ahora' la hora que es
+
+	}
+
+}

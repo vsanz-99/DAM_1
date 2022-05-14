@@ -1,0 +1,10 @@
+package ejercicio01;
+
+public class Guardar_Fichero {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

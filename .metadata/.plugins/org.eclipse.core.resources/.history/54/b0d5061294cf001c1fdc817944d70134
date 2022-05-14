@@ -1,0 +1,16 @@
+package ficheros_directorios;
+import java.io.*;
+
+public class Creando {
+
+	public static void main(String[] args) {
+
+		File ruta=new File("C:"+File.separator+"Users"+File.separator+
+				"PC"+File.separator+"Downloads"+File.separator+"reciente"+
+				File.separator+"java_ser"+File.separator+"nuevo_directorio");
+
+		ruta.mkdir(); // Crear un directorio
+
+	}
+
+}

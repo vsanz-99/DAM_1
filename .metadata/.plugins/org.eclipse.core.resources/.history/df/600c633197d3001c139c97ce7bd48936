@@ -1,0 +1,19 @@
+package eva03.ejercicio01;
+import java.util.ArrayList;
+
+public class Vehiculo { // Clase Vehiculo
+
+	// Propiedades
+	String matricula, marca, modelo, propietario, annio;
+	ArrayList<Sancion> multas=new ArrayList<Sancion>();
+
+	public Vehiculo(String matricula, String marca, String modelo, 
+			String propietario, String annio) {
+		this.matricula=matricula.toUpperCase();
+		this.marca=marca;
+		this.modelo=modelo;
+		this.propietario=propietario;
+		this.annio=annio;
+	}
+
+}

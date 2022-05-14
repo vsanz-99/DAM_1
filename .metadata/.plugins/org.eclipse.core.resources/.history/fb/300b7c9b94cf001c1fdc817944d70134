@@ -1,0 +1,27 @@
+package ficheros_directorios;
+import java.io.*;
+
+public class Creando {
+
+	public static void main(String[] args) {
+
+		File ruta=new File("C:"+File.separator+"Users"+File.separator+
+				"PC"+File.separator+"Downloads"+File.separator+"reciente"+
+				File.separator+"java_ser"+File.separator+"prueba_texto.txt");
+
+		//ruta.mkdir(); // Crear un directorio
+
+		try {
+			ruta.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // Crear un fichero
+		
+		Escribiendo accede_es=new Escribiendo();
+		
+		accede_es.escribir(archivo_destino);
+
+	}
+
+}

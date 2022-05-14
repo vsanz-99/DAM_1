@@ -1,0 +1,12 @@
+package ejercicio01;
+
+public class Eratostenes {
+
+	public void escribir_primos(String ruta_archivo) {
+		
+		// Criba de Eratostenes - Sieve of Eratosthenes
+		
+		
+	}
+	
+}

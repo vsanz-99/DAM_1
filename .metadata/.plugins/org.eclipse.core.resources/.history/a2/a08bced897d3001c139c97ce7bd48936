@@ -1,0 +1,11 @@
+package eva03.ejercicio01;
+
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		
+		Menu menu=new Menu();
+
+	}
+
+}

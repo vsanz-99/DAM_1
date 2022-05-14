@@ -1,0 +1,44 @@
+package leyendo;
+import java.io.*;
+
+public class Acceso_Fichero {
+
+	public static void main(String[] args) {
+
+		Leer_Fichero accediendo=new Leer_Fichero();
+
+		accediendo.lee(); // Muestra los codigos de los caracteres Unicode
+		
+	}
+
+}
+
+class Leer_Fichero {
+
+	public void lee() {
+
+		try {
+
+			FileReader entrada=new FileReader("C:/Users/PC/Downloads/reciente/ejemplo.txt"); // Se abre el flujo de datos
+
+			int c=entrada.read(); // IOException es la excepcion que lanza el read()
+			
+			while (c!=-1) { // Mientras no haya llegado al final de los datos y/o caracteres que tengamos en el fichero de texto
+				
+				c=entrada.read();
+				
+				char letra=(char)c; // Casting
+				
+				System.out.print(letra);
+				
+			}
+			
+		} catch (IOException e) { // Las excepciones son obligatorias
+
+			System.out.println("No se ha encontrado el archivo");
+
+		}
+
+	}
+
+}

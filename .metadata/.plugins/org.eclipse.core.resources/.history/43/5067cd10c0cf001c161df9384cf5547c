@@ -1,0 +1,9 @@
+package poo;
+
+public class Furgoneta {
+
+	public Furgoneta() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

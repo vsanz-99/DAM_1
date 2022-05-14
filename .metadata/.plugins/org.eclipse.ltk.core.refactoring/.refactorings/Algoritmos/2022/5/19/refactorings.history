@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Algoritmos/src/ordenamiento/OrdenaBurbuja.java&apos; to &apos;Ordena.java&apos;" description="Rename resource &apos;OrdenaBurbuja.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/ordenamiento/OrdenaBurbuja.java" name="Ordena.java" stamp="1652464162756" updateReferences="true"/>
+</session>

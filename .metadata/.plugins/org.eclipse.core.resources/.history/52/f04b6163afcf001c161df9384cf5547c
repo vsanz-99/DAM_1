@@ -1,0 +1,38 @@
+package ejercicio04;
+import java.util.Collection;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Vector;
+
+/**
+ * <p><i>Archivo: Ordenar_palabras.java</i></p>
+ * <p>Ordenar alfabeticamente las palabras contenidas en un fichero
+ * de texto. El nombre del fichero que contiene las palabras se debe 
+ * pasar como argumento. El nombre del fichero resultado debe ser el
+ * mismo que el original, annadiendo la coletilla sort.</p>
+ * <p>Cada palabra ocupa una linea.</p>
+ * @since 09/05/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class Ordenar_palabras {
+
+	public static void main(String[] args) {
+
+		try {
+
+			BufferedReader br=new BufferedReader(new FileReader("C:"+File.separator+"Users"+File.separator+"PC"+
+					File.separator+"Downloads"+File.separator+"reciente"+
+					File.separator+"palabras.txt"));
+
+		} catch(IOException ioe) {
+
+		}
+
+	}
+
+}

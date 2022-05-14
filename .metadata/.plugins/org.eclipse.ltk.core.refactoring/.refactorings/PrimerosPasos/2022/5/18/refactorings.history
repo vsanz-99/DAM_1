@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;PrimerosPasos/src/Uso_Arrays2.java&apos; to &apos;Uso_Arrays_II.java&apos;" description="Rename resource &apos;Uso_Arrays2.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Uso_Arrays2.java" name="Uso_Arrays_II.java" stamp="1651945406332" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;PrimerosPasos/src/Uso_Arrays.java&apos; to &apos;Uso_Arrays_I.java&apos;" description="Rename resource &apos;Uso_Arrays.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Uso_Arrays.java" name="Uso_Arrays_I.java" stamp="1651946826659" updateReferences="true"/>
+</session>

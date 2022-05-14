@@ -1,0 +1,13 @@
+package eva03.ejercicio02;
+
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		
+		
+		
+		Menu menu=new Menu("C:/Users/PC/Downloads/reciente");
+		
+	}
+	
+}

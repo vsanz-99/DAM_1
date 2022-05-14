@@ -1,0 +1,32 @@
+1645027906628	Extract local variable 'existedepart'
+1645027970503	Extract constant 'noexistedepart'
+1645028140209	Convert local variable 'existedepart' to field
+1645028314231	Extract local variable 'depart_error'
+1645028347472	Convert local variable 'depart_error' to field
+1645028942037	Extract local variable 'existedepart'
+1645029006357	Extract constant 'NOEXISTEDEPART'
+1645029076926	Convert local variable 'existedepart' to field
+1645029135896	Extract local variable 'depart_error'
+1645029468852	Extract local variable 'existedepart'
+1645029508671	Extract constant 'NOEXISTEDEPART'
+1645029586669	Convert local variable 'existedepart' to field
+1645029642697	Extract local variable 'depart_error'
+1645029657380	Convert local variable 'depart_error' to field
+1645029754433	Extract method 'insertar_depart'
+1645029945446	Extract method 'consultar_depart'
+1645029984177	Extract method 'borrar_depart'
+1645030009482	Extract method 'modificar_depart'
+1645030294769	Extract method 'aldepart'
+1645030325448	Extract method 'consuldepart'
+1645030368784	Extract method 'borradepart'
+1645030393352	Extract method 'modifdepart'
+1645031137000	Change method 'insertar_depart'
+1645031176543	Change method 'consultar_depart'
+1645031209597	Change method 'borrar_depart'
+1645031252180	Change method 'modificar_depart'
+1645031355864	Introduce Parameter Object
+1645031427236	Introduce Parameter Object
+1645031457299	Introduce Parameter Object
+1645031482471	Introduce Parameter Object
+1645031699336	Extract interface 'InterfaceVentanaDepart'
+1645031821523	Extract superclass 'SuperclaseDepart'

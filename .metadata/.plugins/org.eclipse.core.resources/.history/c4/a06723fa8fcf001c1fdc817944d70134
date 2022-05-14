@@ -1,0 +1,24 @@
+package ficheros_directorios;
+import java.io.*;
+
+public class Acceso_Ficheros {
+
+	public static void main(String[] args) {
+		
+		File ruta=new File("C:/Users/PC/Downloads/reciente/java_ser");
+		
+		System.out.println(ruta.getAbsolutePath());
+		
+		// String[] list()
+		String[] nombres_archivos=ruta.list();
+		
+		// Mostrar el listado de lo que hay
+		for (int i=0; i<nombres_archivos.length; i++) {
+			
+			System.out.println(nombres_archivos[i]);
+			
+		}
+		
+	}
+
+}

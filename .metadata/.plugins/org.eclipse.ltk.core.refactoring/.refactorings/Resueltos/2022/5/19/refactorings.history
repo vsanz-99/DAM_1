@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Resueltos/src/es/discoduroderoer/prog06_ejerc1&apos; to &apos;prog06_tarea&apos;" description="Rename resource &apos;prog06_ejerc1&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/es/discoduroderoer/prog06_ejerc1" name="prog06_tarea" stamp="1652467247065" updateReferences="true"/>
+</session>
