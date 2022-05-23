@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.util.AbstractCollection"/>
     <fullyQualifiedTypeName name="ejercicio02.Lista_Partido"/>
     <fullyQualifiedTypeName name="java.util.concurrent.ThreadLocalRandom"/>
@@ -29,4 +28,6 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
 </qualifiedTypeNameHistroy>

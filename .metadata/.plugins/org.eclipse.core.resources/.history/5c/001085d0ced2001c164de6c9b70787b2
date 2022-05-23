@@ -1,8 +1,0 @@
-package poo;
-
-public interface Trabajadores {
-
-	/*public abstract*/ // Se sobrentiende 
-	double establece_bonus(double gratificacion);
-	
-}

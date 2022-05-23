@@ -1,8 +1,0 @@
-package eva02.primer_examen;
-
-public class Vehiculo {
-
-	public int getEjes() {
-		return ejes;
-	}
-}
