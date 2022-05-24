@@ -14,7 +14,7 @@ public class Operaciones2Numeros {
 	public static void main(String[] args) {
 
 		int num1=0; int num2=0;
-		int suma=0; int resta=0; int multiplicacion=0; double division=0.0;
+		int suma=0; int resta=0; int multiplicacion=0; double division=0;
 
 		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);

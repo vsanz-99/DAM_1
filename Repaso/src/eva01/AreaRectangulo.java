@@ -12,7 +12,7 @@ public class AreaRectangulo {
 
 	public static void main(String[] args) {
 
-		double base=0.0; double altura=0.0; double area=0.0;
+		double base=0; double altura=0; double area=0;
 
 		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);

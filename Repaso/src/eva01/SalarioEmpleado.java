@@ -1,4 +1,5 @@
 package eva01;
+import java.util.Scanner;
 
 /**
  * <p><i>Archivo: SalarioEmpleado.java</i></p>
@@ -12,24 +13,27 @@ public class SalarioEmpleado {
 
 	public static void main(String[] args) {
 
-		int h_trabajadas=34; int h_euros=12; double sueldo_semanal;
+		int h_trabajadas=0; int h_euros=12; double sueldo_semanal=0;
+
+		@SuppressWarnings("resource")
+		Scanner teclado=new Scanner(System.in);
 
 		System.out.println("\tCALCULAR SALARIO SEMANAL DE UN EMPLEADO.");
 		System.out.println("\t----------------------------------------");
+		System.out.println();
+
+		System.out.println("\tPor favor, introduzca el numero de horas trabajadas durante la semana: ");
+		h_trabajadas=teclado.nextInt();
 
 		sueldo_semanal=(double)h_trabajadas*h_euros;
 
-		// Cuando las horas de trabajo exceden de 40 se consideran horas extra
-		// Las primeras 8 se pagan al doble
-		if (h_trabajadas>40)
-			sueldo_semanal=sueldo_semanal+(h_trabajadas-40)*h_euros;
-
-		// Si las horas extra exceden de 8 se pagan las primeras 8 al doble de lo 
-		// que se pagan las horas normales
-		if (h_trabajadas>48)
-			sueldo_semanal=sueldo_semanal+(h_trabajadas-48)*h_euros;
-
-		System.out.print("\tSalario semanal del empleado: "+sueldo_semanal+"€.");
+		if (h_trabajadas>40 && h_trabajadas<=80) {
+			h_euros=16;
+			int h_extra=(h_trabajadas-40)*h_euros;
+			sueldo_semanal=480+h_extra;
+		}
+		
+		System.out.print("\tEl sueldo semanal que le corresponde es de "+sueldo_semanal+" euros");
 
 	}
 

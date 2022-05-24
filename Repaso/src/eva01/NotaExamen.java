@@ -17,7 +17,7 @@ public class NotaExamen {
 
 	public static void main(String[] args) {
 
-		double first_exam=0.0; double second_exam=0.0; double eva02=0.0;
+		double first_exam=0; double second_exam=0; double eva02=0;
 
 		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);

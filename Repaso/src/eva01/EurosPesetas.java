@@ -13,7 +13,7 @@ public class EurosPesetas {
 
 	public static void main(String[] args) {
 
-		double euros=0.0; int pesetas=0;
+		double euros=0; int pesetas=0;
 
 		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);
