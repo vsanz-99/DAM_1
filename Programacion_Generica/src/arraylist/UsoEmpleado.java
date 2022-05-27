@@ -69,9 +69,7 @@ public class UsoEmpleado {
 		Iterator<Empleado> mi_iterador=listaEmpleados.iterator();
 		
 		while (mi_iterador.hasNext()) {
-			
 			System.out.println(mi_iterador.next().getDatos());
-			
 		}
 		
 		/*
@@ -102,25 +100,17 @@ public class UsoEmpleado {
 class Empleado {
 
 	public Empleado(String nombre, int edad, double salario) {
-
 		this.nombre=nombre;
-
 		this.edad=edad;
-
 		this.salario=salario;
-
 	}
 
 	public String getDatos() {
-
 		return "El empleado se llama "+nombre+". Tiene "+edad+" annos."+" Y un salario de "+salario+".";
-
 	}
 
 	private String nombre;
-
 	private int edad;
-
 	private double salario;
 
 }

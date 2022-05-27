@@ -32,7 +32,7 @@ public class SalarioEmpleado {
 			int h_extra=(h_trabajadas-40)*h_euros;
 			sueldo_semanal=480+h_extra;
 		}
-		
+
 		System.out.print("\tEl sueldo semanal que le corresponde es de "+sueldo_semanal+" euros");
 
 	}

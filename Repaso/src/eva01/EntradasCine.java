@@ -57,6 +57,7 @@ public class EntradasCine {
 				precio_total=(double)parejas*11+8;
 			}
 			break;
+		default :
 		}
 
 		try {

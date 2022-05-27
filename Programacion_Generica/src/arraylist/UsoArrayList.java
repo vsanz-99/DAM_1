@@ -1,5 +1,4 @@
 package arraylist;
-
 import java.io.*;
 
 public class UsoArrayList {

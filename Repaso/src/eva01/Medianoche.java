@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 /**
  * <p><i>Archivo: Medianoche.java</i></p>
- * <p><b>Ejercicio 10.</b> Escribe un programa que dada una hora determinada (horas y minutos), calcule los segundos 
+ * <p><b>Ejercicio 10</b>. Escribe un programa que dada una hora determinada (horas y minutos), calcule los segundos 
  * que faltan para llegar a la medianoche.</p>
  * @since 23/05/2022
  * @version 1.0

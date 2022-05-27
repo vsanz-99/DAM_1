@@ -120,6 +120,7 @@ public class Horoscopo {
 				signo="SAGITARIO";
 			}
 			break;
+		default :
 		}
 
 		System.out.println("\tUsted es "+signo+".");

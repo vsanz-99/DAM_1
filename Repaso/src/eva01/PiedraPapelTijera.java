@@ -88,6 +88,7 @@ public class PiedraPapelTijera {
 					break;
 				}
 				break;
+			default :
 			}
 			try {
 				do {

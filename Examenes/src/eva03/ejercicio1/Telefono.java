@@ -1,0 +1,44 @@
+package eva03.ejercicio1;
+
+/**
+ * <p><i>Archivo: Telefono.java</i></p>
+ * @since 23/05/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class Telefono { // Clase Telefono.
+
+	String numero, tipo;
+
+	public Telefono(String numero, String tipo) { // Constructor.
+		this.numero=numero;
+		this.tipo=tipo;
+	}
+
+	// Constructor para cuando se obtiene del fichero.
+	public Telefono(String entrada) {
+		fromString(entrada); // Cargar.
+	}
+
+	@Override
+	public String toString() {
+		return tipo+"_"+numero;
+	}
+
+	// Este metodo cogera como parametro un String en formato fichero y lo dividira en los atributos de la clase Telefono.
+	private void fromString(String entrada) {
+		tipo=entrada.substring(1, entrada.indexOf("_"));
+		numero=entrada.substring(entrada.indexOf("_")+1, entrada.length()-1);
+	}
+
+	// Determina si un numero de telefono cumple con las normas expuestas en el examen, true si es valido.
+	public static boolean telefonoValido(String numero) {
+		for (int i=0; i<numero.length(); ++i) {
+			if ((numero.charAt(i)<'0' || numero.charAt(i)>'9') && 
+					numero.charAt(i)!='+' && numero.charAt(i)!=' ')
+				return false; // El numero de telefono introducido no es valido.
+		}
+		return true;
+	}
+
+} // Fin de la clase Telefono.
