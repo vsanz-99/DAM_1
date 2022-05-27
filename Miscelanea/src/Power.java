@@ -17,9 +17,7 @@ public class Power {
 	}
 
 	static int calculatePower(int num, int power) {
-
 		int answer=1;
-
 		if (num>0 && power==0) {
 			return answer;
 		} else if (num==0 && power>=1) {
