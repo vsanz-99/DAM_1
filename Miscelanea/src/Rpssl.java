@@ -17,7 +17,7 @@ public class Rpssl {
 	Opcionesrpssl op=new Opcionesrpssl();
 
 	public Rpssl() {
-		System.out.println("\tEmpieza el juego: ");
+		System.out.println("Empieza el juego: \r");
 		do {
 			System.out.println(menu());
 			a=teclado.nextInt();
@@ -26,7 +26,7 @@ public class Rpssl {
 			System.out.println(op.getMarcador());
 		} while (a!=0);
 	}
-	
+
 	String menu() {
 		String menu="";
 		for (Map.Entry<Integer, String> x : op.op.entrySet()) {
@@ -40,7 +40,7 @@ public class Rpssl {
 		String ai=op.op.get((Integer)a);
 		String ia=op.op.get((Integer)b);
 		//op.marcaRonda((Integer)a, (Integer)b);
-		System.out.println(ai+"\tX\t"+ia+op.matoPierdo((Integer)a, (Integer)b));
+		System.out.println(ai+"   X   "+ia+op.matoPierdo((Integer)a, (Integer)b));
 	}
-	
+
 }

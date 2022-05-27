@@ -32,7 +32,7 @@ public class Opcionesrpssl {
 	}
 	
 	public String getMarcador() {
-		return "__________________\n|TU \t MAQUINA| \n|"+tu+"\t       "+maquina+"|\n__________________";
+		return "_________________\n|TU \t MAQUINA| \n| "+tu+"\t       "+maquina+"|\n_________________";
 	}
 	
 	/*public void marcaRonda(Integer a, Integer b) {
@@ -57,15 +57,15 @@ public class Opcionesrpssl {
 			while (i<=(op.size()/2)*2) {
 				if (suma(a,i)==b) {
 					++tu;
-					return" ganas";
+					return"   >   Tu ganas.";
 				}
 				if (resta(a,i)==b) {
 					++maquina;
-					return" pierdes";
+					return"   >   Tu pierdes.";
 				}
 				i+=2;
 			}
-		return" empate";
+		return"> Empate.";
 		
 	}
 	
