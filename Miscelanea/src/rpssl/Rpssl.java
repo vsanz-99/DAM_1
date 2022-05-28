@@ -1,3 +1,4 @@
+package rpssl;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;

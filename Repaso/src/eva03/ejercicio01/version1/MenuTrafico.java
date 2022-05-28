@@ -1,29 +1,29 @@
-package eva03.ejercicio01;
+package eva03.ejercicio01.version1;
 import java.util.Scanner;
 
 /**
  * <p><i>Archivo: Menu.java</i></p>
  * <p><b>Ejercicio 01</b>. Gestionar las multas de los 
- * vehiculos de un municipio.</p>
+ * vehiculos de un municipio. <b>Sin acabar</b>.</p>
  * @since 27/05/2022
  * @version 1.0
  * @author Victor Sanz*/
 
-public class Menu {
-	
+public class MenuTrafico {
+
 	Scanner teclado=new Scanner(System.in);
 	boolean fin;
 	String fichero;
 	Trafico t;
-	
-	public Menu(String fichero) {
+
+	public MenuTrafico(String fichero) {
 		this.fichero=fichero;
 		t=new Trafico(fichero);
 		do {
 			fin=eleccion();
 		} while (!fin);
 	}
-	
+
 	private boolean eleccion() {
 		int opcion;
 		do {
@@ -57,7 +57,7 @@ public class Menu {
 		}
 		return false;
 	}
-	
+
 	private void imprimir() {
 		System.out.println("Elige una opcion: ");
 		System.out.println("\t1-. Anadir un vehiculo al municipio.\n"
@@ -71,7 +71,7 @@ public class Menu {
 				+"\t7-. Terminar el programa.");
 		System.out.println();
 	}
-	
+
 	private void anadirV() {
 		String matricula, marca, modelo, propietario, anio;
 		do {
@@ -90,20 +90,19 @@ public class Menu {
 		anio=teclado.next();
 		t.anadirVehiculo(matricula, marca, modelo, propietario, anio);
 	}
-	
+
 	private void eliminarV() {
 		String matricula;
 		System.out.println("Matricula del vehiculo: ");
 		matricula=teclado.next();
 		t.eliminarVehiculo(matricula);
 	}
-	
+
 	private void anadirSancion() {
 		String matricula, fecha, motivo, importe;
 		System.out.println("Matricula del vehiculo: ");
 		matricula=teclado.next();
 		System.out.println("Fecha: ");
-		// Conversion String to Date.
 		fecha=teclado.next();
 		System.out.println("Motivo: ");
 		teclado.nextLine();
@@ -112,21 +111,21 @@ public class Menu {
 		importe=teclado.next();
 		t.anadirSancion(matricula, fecha, motivo, importe);
 	}
-	
+
 	private void consultar() {
 		String matricula;
 		System.out.println("Matricula del vehiculo: ");
 		matricula=teclado.next();
 		t.consultaSanciones(matricula);
 	}
-	
+
 	public void eliminarS() {
 		String matricula;
 		System.out.println("Matricula del vehiculo: ");
 		matricula=teclado.next();
 		t.quitarSanciones(matricula);
 	}
-	
+
 	private void listado() {
 		int num;
 		System.out.println("Numero de sanciones: ");

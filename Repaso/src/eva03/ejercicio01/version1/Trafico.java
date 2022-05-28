@@ -1,4 +1,4 @@
-package eva03.ejercicio01;
+package eva03.ejercicio01.version1;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * <p><i>Archivo: Trafico.java</i></p>
  * <p><b>Ejercicio 01</b>. Gestionar las multas de los 
- * vehiculos de un municipio.</p>
+ * vehiculos de un municipio. <b>Sin acabar</b>.</p>
  * @since 27/05/2022
  * @version 1.0
  * @author Victor Sanz*/

@@ -1,4 +1,5 @@
 package eva03.ejercicio2;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -13,7 +14,9 @@ import java.util.Scanner;
 
 public class MenuAgenda { // Clase MenuAgenda.
 
-	String fichero="agenda.dat"; // Nombre del fichero que se cargara en la coleccion.
+	String fichero="H:"+File.separator+"eclipse_myworkspace"+File.separator
+			+"Examenes"+File.separator+"src"+File.separator+"eva03"
+			+File.separator+"agenda.dat"; // Nombre del fichero que se cargara en la coleccion.
 
 	Agenda agenda=new Agenda(fichero); // Instanciacion de un nuevo objeto de la clase Agenda.
 

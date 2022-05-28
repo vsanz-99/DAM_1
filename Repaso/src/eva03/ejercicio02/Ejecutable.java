@@ -1,4 +1,5 @@
 package eva03.ejercicio02;
+import java.io.IOException;
 
 /**
  * <p><i>Archivo: Ejecutable.java</i></p>
@@ -9,11 +10,12 @@ package eva03.ejercicio02;
 
 public class Ejecutable {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		// Nuevo menu.
 		@SuppressWarnings("unused")
-		Menu menuViajes=new Menu();
+		MenuAgencia menuViajes=new MenuAgencia("H:/eclipse_myworkspace/Repaso/src/eva03/"
+				+"ejercicio02/viajantes.txt");
 
 	}
 

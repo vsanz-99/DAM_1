@@ -1,9 +1,9 @@
-package eva03.ejercicio01;
+package eva03.ejercicio01.version1;
 
 /**
  * <p><i>Archivo: Sancion.java</i></p>
  * <p><b>Ejercicio 01</b>. Gestionar las multas de los 
- * vehiculos de un municipio.</p>
+ * vehiculos de un municipio. <b>Sin acabar</b>.</p>
  * @since 27/05/2022
  * @version 1.0
  * @author Victor Sanz*/

@@ -1,10 +1,10 @@
-package eva03.ejercicio01;
+package eva03.ejercicio01.version1;
 import java.util.ArrayList;
 
 /**
  * <p><i>Archivo: Vehiculo.java</i></p>
  * <p><b>Ejercicio 01</b>. Gestionar las multas de los 
- * vehiculos de un municipio.</p>
+ * vehiculos de un municipio. <b>Sin acabar</b>.</p>
  * @since 27/05/2022
  * @version 1.0
  * @author Victor Sanz*/
@@ -24,7 +24,7 @@ public class Vehiculo {
 	}
 
 	public Vehiculo(String entrada) {
-		Sort(entrada);
+		sort(entrada);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class Vehiculo {
 				new Sancion(fecha, motivo, importe));
 	}
 
-	public void Sort(String entrada) {
+	public void sort(String entrada) {
 		matricula=entrada.substring(0, entrada.indexOf(":"));
 		entrada=entrada.substring(entrada.indexOf(":")+1, entrada.length());
 		marca=entrada.substring(0, entrada.indexOf(":"));
@@ -63,10 +63,10 @@ public class Vehiculo {
 
 	public static boolean valida(String matricula) {
 		if (matricula.toUpperCase().matches("^[0-9]{4}[A-Z]{3}$")) {
-			System.out.println("Matrícula valida.");
+			System.out.println("Matricula valida.");
 			return true;
 		} else {
-			System.out.println("Matrícula invalida.");
+			System.out.println("Matricula invalida.");
 			return false;
 		}      
 	}

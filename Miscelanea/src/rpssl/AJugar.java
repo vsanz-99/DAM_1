@@ -1,3 +1,5 @@
+package rpssl;
+
 /**
  * <p><i>Archivo: AJugar.java</i></p>
  * @since 27/05/2022

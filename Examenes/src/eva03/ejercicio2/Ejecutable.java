@@ -11,6 +11,7 @@ public class Ejecutable {
 	public static void main(String[] args) {
 
 		// Nuevo menu.
+		@SuppressWarnings("unused")
 		MenuAgenda menu=new MenuAgenda(); 
 
 	}

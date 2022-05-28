@@ -10,16 +10,17 @@ import eva03.ejercicio01.Vehiculo;
 
 public class AgenciaViajes {
 
-	ArrayList<Viajante> viajantes=new ArrayList<Viajante>();
+	static ArrayList<Viajante> viajantes=new ArrayList<Viajante>();
 	String fichero; Scanner in=null;
 	boolean add=true; PrintStream out=null;
+	String fichero_nuevo="ventas.txt";
 	String fichero_viejo="historico.txt";
 	
 	public AgenciaViajes(String fichero) {
 		this.fichero=fichero;
 		if (abrirFichero())
 			System.out.println("Todo funciona correctamente.");
-		for (Vehiculo v : viajantes) {
+		for (Viajante v : viajantes) {
 			System.out.println(v);
 		}
 	}
@@ -38,11 +39,11 @@ public class AgenciaViajes {
 		if (add) {
 			while (in.hasNextLine()) {
 				if (!viajantes.add(
-						new Vehiculo(in.nextLine())))
+						new Viajante(in.nextLine())))
 					System.out.println("No se escribe en el fichero.");
 			}
 		} else {
-			System.out.println("\tNo hay ventas registradas.");
+			System.out.println("\tNo hay viajantes registrados.");
 		}
 		return add;
 	}
@@ -51,5 +52,39 @@ public class AgenciaViajes {
 		viajantes.add(new 
 				Viajante(dni, nombre, distancia_km, antiguedad, n_ventas));
 	}
+	
+	public void eliminarV(String dni) {
+		for (Viajante v : viajantes) {
+			if (v.dni==dni) {
+				viajantes.remove(v);
+			}
+		}
+	}
+	
+	public static void listarViajantes() {
+		for (Viajante v : viajantes) {
+			System.out.println(v);
+		}
+	}
 
+	public static void iniV() {
+		
+	}
+	
+	public void incrementarKm(String dni, double distancia_km) {
+		
+	}
+	 
+	public void anadirVenta(String dni, String fecha, double importe, String cliente, String cobrada) {
+		
+	}
+	
+	public void cobrarV(String dni, String fecha, String cliente) {
+		
+	}
+	
+	public static void listarVentas() {
+		
+	} 
+	
 }

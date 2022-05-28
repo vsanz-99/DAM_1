@@ -1,26 +1,27 @@
 package eva03.ejercicio02;
 import java.util.Scanner;
 
-public class Menu {
+public class MenuAgencia {
 
-	String fichero="ventas.txt";
+	String fichero;
 	AgenciaViajes a=new AgenciaViajes(fichero);
 	String menu="Elige una opcion: \n"
 			+"\t1-. Anadir un viajante.\n"
 			+"\t2-. Eliminar un viajante.\n"
 			+"\t3-. Mostrar un listado de todos los viajantes "
-			+"(distancia recorrida e importe acumulado de las ventas cobradas)."
+			+"(distancia recorrida e importe acumulado de las ventas cobradas).\n"
 			+"\t4-. Inicializar ventas (pasar distancia recorrida a 0 y almacenar "
-			+"ventas cobradas en el historico)."
-			+"\t5-. Incrementar la distancia recorrida por un viajante (numero de km recorridos)."
-			+"\t6-. Anadir una venta de un viajante."
-			+"\t7-. Cobrar una venta de un viajante."
-			+"\t8-. Mostrar un listado de todas las ventas no cobradas."
+			+"ventas cobradas en el historico).\n"
+			+"\t5-. Incrementar la distancia recorrida por un viajante (numero de km recorridos).\n"
+			+"\t6-. Anadir una venta de un viajante.\n"
+			+"\t7-. Cobrar una venta de un viajante.\n"
+			+"\t8-. Mostrar un listado de todas las ventas no cobradas.\n"
 			+"\t0-. Terminar el programa.";
 
 	Scanner teclado=new Scanner(System.in);
 
-	public Menu() {
+	public MenuAgencia(String fichero) {
+		this.fichero=fichero;
 		int opcion;
 		do {
 			System.out.println(menu);
@@ -103,16 +104,25 @@ public class Menu {
 
 	private void incrementarKm() {
 		double distancia_km;
+		String dni="";
+		do {
+			System.out.println("Introduce el NIF del viajantes: ");
+			dni=teclado.next();
+		} while (!validaDni(dni));
 		do {
 			System.out.println("Introduce numero de km recorridos: ");
 			distancia_km=teclado.nextDouble();
 		} while (distancia_km<=0 || distancia_km>10000);
-		a.incrementarKm(distancia_km);
+		a.incrementarKm(dni, distancia_km);
 	}
 
 	private void anadirVenta() {
 		int dia, mes, anio; double importe;
-		String cliente; String cobrada="no";
+		String dni, cliente; String cobrada="no";
+		do {
+			System.out.println("Introduce el NIF del viajantes: ");
+			dni=teclado.next();
+		} while (!validaDni(dni));
 		System.out.println("Introduce la fecha de realizacion de la venta: ");
 		do {
 			System.out.println("\tDia: ");
@@ -139,13 +149,33 @@ public class Menu {
 			cobrada="si";
 			System.out.println("\tLa venta "+cobrada+" ha sido cobrada.");
 		}
-		a.anadirVenta(fecha, importe, cliente, cobrada);
+		a.anadirVenta(dni, fecha, importe, cliente, cobrada);
 	}
 
 	private void cobrarV() {
-		String cliente="";
+		int dia, mes, anio;
+		String fecha;
+		String cliente=""; String dni="";
+		do {
+			System.out.println("Introduce el NIF del viajantes: ");
+			dni=teclado.next();
+		} while (!validaDni(dni));
+		System.out.println("Introduce la fecha de realizacion de la venta: ");
+		do {
+			System.out.println("\tDia: ");
+			dia=teclado.nextInt();
+		} while (dia<=0 || dia>31);
+		do {
+			System.out.println("\tMes: ");
+			mes=teclado.nextInt();
+		} while (mes<=0 || mes>12);
+		do {
+			System.out.println("\tAnio: ");
+			anio=teclado.nextInt();
+		} while (anio<1999);
+		fecha=dia+"/"+mes+"/"+anio;
 		System.out.println("Cobrando venta de un viajante ...");
-		a.cobrarV(cliente);
+		a.cobrarV(dni, fecha, cliente);
 	}
 
 	private void listarVentas() {
