@@ -1,10 +1,13 @@
 package eva03.ejercicio01.version2;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -26,7 +29,6 @@ public class Inserta {
 
 	public Inserta(String fichero) {
 		this.fichero=fichero;
-		//System.out.println("Abro fichero: "+fichero);
 		try {
 			s=new Scanner(
 					new BufferedReader(
@@ -35,18 +37,19 @@ public class Inserta {
 			add=false;
 		}
 	}
-
+	
+	// Finaliza:
 	public void finalizar() {
 		if (s!=null)
 			s.close();
 		s=null;
 	}
-
+	
+	// Comprueba si el vehiculo existe:
 	public boolean comprobarVehiculo(String v) {
 		if (s==null)
 			return false;
 		boolean encontrado=false;
-		// System.out.println("Comprobando nombre del usuario en el fichero ...");
 		while (!encontrado && s.hasNext()) {
 			String vh=s.next();
 			if (v.equals(vh))
@@ -56,22 +59,68 @@ public class Inserta {
 		return false;
 	}
 
-	public boolean comprobarVehiculoIdentificador(int v) {
-		if (s==null )
-			return false;
-		boolean encontrado=false;
-		// System.out.println("Comprobando nombre del usuario en el fichero ...");
-		while (!encontrado && s.hasNext()) {
-			String vh=s.next();
-			if (v==vh.charAt(0)) 
-				return true;
-			s.nextLine();
+	// Anade datos:
+	public void anadirDatos(String v) {
+		if (s!=null)
+			s.close();
+		s=null;
+		PrintStream ps=null;
+		try {
+			ps=new PrintStream(
+					new FileOutputStream(fichero, add));
+			ps.println(v);
+		} catch(FileNotFoundException e) {	
+			e.printStackTrace();
+		} finally {
+			ps.close();
 		}
-		return false;
+	}
+	
+	// Anade vehiculos:
+	public void anadirVehiculo(Vehiculo vh) throws IOException {
+		if (s!=null)
+			s.close();
+		s=null;
+		ObjectOutputStream oos=null;
+		try {
+			oos=new ObjectOutputStream(
+					new FileOutputStream(fichero, add));
+			oos.writeObject(vh);
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			oos.close();
+		}
 	}
 
+	// Inserta los datos del fichero al ArrayList: 
+	public void rInsertarDatos(ArrayList <String> v) {
+		while (s.hasNext()) {
+			v.add(s.nextLine());
+		}
+	}
+
+	// Inserta los vehiculos del fichero al ArrayList:
+	public void rInsertarVehiculos(ArrayList <Vehiculo> v) {
+		try {
+			FileInputStream fis=new FileInputStream(fichero);
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			v.add((Vehiculo)ois.readObject());
+			ois.close();
+			fis.close();
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		} catch(ClassNotFoundException c) {
+			System.out.println("Class not found.");
+			c.printStackTrace();
+			return;
+		}
+	}
+	
+	// Borrar datos:
 	public void borrarTodo() throws IOException {
-		if (s!=null )
+		if (s!=null)
 			s.close();
 		s=null;
 		Writer fw=null;
@@ -84,45 +133,12 @@ public class Inserta {
 			fw.close();
 		}
 	}
-
-	public void anadirDatos(String v) {
-		//System.out.println("Inserta usuario: "+nombre);
-		if (s!=null )
-			s.close();
-		s=null;
-		PrintStream ps=null;
-		try {
-			ps=new PrintStream(
-					new FileOutputStream(fichero, add));
-			ps.println(v);
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			ps.close();
-		}
-	}
-
-	public void anadirVehiculo(Vehiculo vh) {
-		// System.out.println("Inserta usuario: "+nombre);
-		if (s!=null)
-			s.close();
-		s=null;
-		PrintStream ps=null;
-		try {
-			ps=new PrintStream(
-					new FileOutputStream(fichero, add));
-			ps.println(vh);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			ps.close();
-		}
-	}
-
-	public void rInsertarDatos(ArrayList <String> v) {
-		while (s.hasNext()){
-			v.add(s.next());
-		}
+	
+	// Fichero vacio:
+	public boolean tieneSiguiente() throws IOException {
+		BufferedReader br=new BufferedReader(
+				new FileReader(fichero));     
+		return br.readLine()==null;
 	}
 
 }

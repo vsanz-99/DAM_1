@@ -28,11 +28,20 @@ public class Menu {
 	public Menu(String fichero, String fichero2) throws IOException {
 		this.fichero=fichero;
 		this.fichero2=fichero2;
-		Inserta insert=new Inserta(fichero);
-		insert.rInsertarDatos(datos);
+		Inserta ins1=new Inserta(fichero);
+		if (!ins1.tieneSiguiente()) {
+			ins1.rInsertarDatos(datos);
+		}
+		ins1.finalizar();
+		Inserta ins2=new Inserta(fichero2);
+		if (!ins2.tieneSiguiente()) {
+			ins2.rInsertarVehiculos(vehiculos);
+		}
+		ins2.finalizar();
 		boolean fin;
 		do {
 			fin=trabajo();
+			modFichero();
 		} while (!fin);
 	}
 
@@ -54,6 +63,7 @@ public class Menu {
 			imprimir();
 			try {
 				opcion=teclado.nextInt();
+				teclado.nextLine();
 			} catch(Exception e) {
 				System.out.println("Debe introducir un numero entre 1 y 7 (ambos inclusive).");
 				opcion=0;
@@ -87,13 +97,11 @@ public class Menu {
 
 	private void aVehiculo() throws IOException {
 		Inserta i=new Inserta(fichero);
-		String matricula="";
-		String marca, modelo, propietario; 
+		String matricula, marca, modelo, propietario; 
 		int aMatricula;
 		boolean verify=false;
 		do {
 			System.out.println("Matricula: ");
-			teclado.next();
 			matricula=teclado.nextLine();
 			for (int index=0; index<matricula.length(); index++) {
 				if (index<3 && matricula.charAt(index)>=0 && matricula.charAt(index)<10) {
@@ -107,13 +115,14 @@ public class Menu {
 			}
 		} while(!verify);
 		System.out.println("Marca: ");
-		marca=teclado.next();
+		marca=teclado.nextLine();
 		System.out.println("Modelo: ");
 		modelo=teclado.nextLine();
 		System.out.println("Propietario: ");
 		propietario=teclado.nextLine();
 		System.out.println("aMatricula: ");
 		aMatricula=teclado.nextInt();
+		teclado.nextLine();
 		String v=matricula+" "+marca+" "+modelo+" "+propietario+" "+aMatricula;
 		if (i.comprobarVehiculo(v)) {
 			i.finalizar();
@@ -153,15 +162,15 @@ public class Menu {
 	}
 
 	// Anadir sancion: 
-	public void aSancion() {
+	public void aSancion() throws IOException {
 		System.out.println("Introduce la matricula del vehiculo al que quieras poner una "
 				+"sancion: ");
-		String matricula=teclado.next();
+		String matricula=teclado.nextLine();
 		System.out.println("Introduce la fecha de la sancion: ");
-		String fecha=teclado.next();
+		String fecha=teclado.nextLine();
 		teclado.next();
 		System.out.println("Introduce le motivo de la sancion: ");
-		String motivo=teclado.next();
+		String motivo=teclado.nextLine();
 		System.out.println("Introduce el importe de la sancion: ");
 		int importe=teclado.nextInt();
 		for (Vehiculo v : vehiculos) {
@@ -169,14 +178,13 @@ public class Menu {
 				v.ponerSancion(fecha, motivo, importe);
 			}
 		}
-
 	}
 
 	// Consultar sanciones:
 	public void cSanciones() {
 		System.out.println("Introduce la matricula del vehiculo "
 				+"del que quieres consultar las sanciones: ");
-		String matricula=teclado.next();
+		String matricula=teclado.nextLine();
 		for (Vehiculo v : vehiculos) {
 			if (matricula.equals(v.getMatricula())) {
 				v.mostrarSanciones();
@@ -186,7 +194,9 @@ public class Menu {
 
 	// Eliminar sanciones: 
 	public void eSancion() {
-		String matricula=teclado.next();
+		System.out.println("Introduce la matricula del vehiculo del que "
+				+ "se quieren eliminar las sanciones: ");
+		String matricula=teclado.nextLine();
 		for (Vehiculo v : vehiculos) {
 			if (matricula.equals(v.getMatricula())) {
 				v.eliminarSanciones();
@@ -201,7 +211,7 @@ public class Menu {
 		int cuantia=teclado.nextInt();
 		for (Vehiculo v : vehiculos) {
 			if (v.totalSanciones()>cuantia) {
-				v.getAll();
+				System.out.println(v.getAll());
 			}
 		}
 	}
@@ -211,7 +221,13 @@ public class Menu {
 		Inserta ins=new Inserta(fichero2);
 		in.borrarTodo();
 		ins.borrarTodo();
-		vehiculos.forEach(n -> ins.anadirVehiculo(n));
+		vehiculos.forEach(n -> {
+				try {
+					ins.anadirVehiculo(n);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		});
 		datos.forEach(n -> in.anadirDatos(n));
 		in.finalizar();
 		ins.finalizar();

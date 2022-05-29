@@ -7,5 +7,5 @@ package eva02.ejercicio05;
  * @author Victor Sanz*/
 
 public enum Sexo {
-	MACHO,HEMBRA;
+	MACHO, HEMBRA;
 }

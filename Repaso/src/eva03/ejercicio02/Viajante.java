@@ -1,7 +1,12 @@
 package eva03.ejercicio02;
 import java.util.ArrayList;
 
-import eva03.ejercicio01.Sancion;
+/**
+ * <p><i>Archivo: Viajante.java</i></p>
+ * <p><b>Ejercicio 02</b>. Gestionar el control de viajantes.</p>
+ * @since 27/05/2022
+ * @version 1.0 
+ * @author Victor Sanz*/
 
 public class Viajante {
 

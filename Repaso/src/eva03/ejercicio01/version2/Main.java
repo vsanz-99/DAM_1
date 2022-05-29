@@ -15,8 +15,8 @@ public class Main {
 		
 		@SuppressWarnings("unused")
 		Menu menu=new Menu("H:/eclipse_myworkspace/Repaso/"
-				+"src/eva03/ejercicio01/coches.txt", "H:/eclipse_myworkspace/Repaso/"
-						+"src/eva03/ejercicio01/datos.txt");
+				+"src/eva03/ejercicio01/Datos.txt", "H:/eclipse_myworkspace/Repaso/"
+						+"src/eva03/ejercicio01/Vehiculos.dat");
 
 	}
 

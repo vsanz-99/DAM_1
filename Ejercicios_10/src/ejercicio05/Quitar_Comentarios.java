@@ -18,8 +18,8 @@ public class Quitar_Comentarios {
 
 	public static void main(String[] args) {
 
-		String programa_original="H:/eclipse_myworkspace/Ejercicios_10/src/ejercicio05/hola.java";
-		String programa_limpio="H:/eclipse_myworkspace/Ejercicios_10/src/ejercicio05/holav2.java";
+		String programa_original="C:/Users/PC/Downloads/reciente/java_ser/hola.java";
+		String programa_limpio="C:/Users/PC/Downloads/reciente/java_ser/hola2.java";
 
 		try {
 			BufferedReader br=new BufferedReader(new FileReader(programa_original));

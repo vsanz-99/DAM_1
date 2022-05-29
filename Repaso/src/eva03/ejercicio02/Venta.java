@@ -1,5 +1,12 @@
 package eva03.ejercicio02;
 
+/**
+ * <p><i>Archivo: Venta.java</i></p>
+ * <p><b>Ejercicio 02</b>. Gestionar el control de viajantes.</p>
+ * @since 27/05/2022
+ * @version 1.0 
+ * @author Victor Sanz*/
+
 public class Venta {
 
 	String fecha, cliente, cobrada;

@@ -31,9 +31,12 @@ public class Ficheros_Mezcla {
 
 		try {
 
-			BufferedReader bf1=new BufferedReader(new FileReader(fichero1));
-			BufferedReader bf2=new BufferedReader(new FileReader(fichero2));
-			BufferedWriter bw=new BufferedWriter(new FileWriter(mezcla));
+			BufferedReader bf1=new BufferedReader(
+					new FileReader(fichero1));
+			BufferedReader bf2=new BufferedReader(
+					new FileReader(fichero2));
+			BufferedWriter bw=new BufferedWriter(
+					new FileWriter(mezcla));
 
 			String linea1="";
 			String linea2="";

@@ -20,6 +20,7 @@ import java.util.Vector;
  * @version 1.0
  * @author Victor Sanz*/
 
+@SuppressWarnings("unused")
 public class Ordenar_palabras {
 
 	public static void main(String[] args) {

@@ -6,7 +6,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import eva03.ejercicio01.Vehiculo;
+/**
+ * <p><i>Archivo: AgenciaViajes.java</i></p>
+ * <p><b>Ejercicio 02</b>. Gestionar el control de viajantes.</p>
+ * @since 27/05/2022
+ * @version 1.0 
+ * @author Victor Sanz*/
 
 public class AgenciaViajes {
 

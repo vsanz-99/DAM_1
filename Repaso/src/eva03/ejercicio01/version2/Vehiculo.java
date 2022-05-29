@@ -1,4 +1,5 @@
 package eva03.ejercicio01.version2;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 * @version 1.0
 * @author Victor Sanz*/
 
-public class Vehiculo {
+public class Vehiculo implements Serializable {
 	
 	private String matricula;
 	private String marca;
@@ -24,6 +25,7 @@ public class Vehiculo {
 		this.marca=marca;
 		this.modelo=modelo;
 		this.propietario=propietario;
+		this.aMatricula=aMatricula;
 	}
 	
 	public String getMatricula() {
@@ -35,9 +37,8 @@ public class Vehiculo {
 	}
 	
 	public void ponerSancion(String fecha, String motivo, int importe) {
-		for (Sancion s : snc) {
-			System.out.println(s.imprimirTodo());
-		}
+		Sancion sancion=new Sancion(fecha, motivo, importe);
+		snc.add(sancion);
 	}
 	
 	public void mostrarSanciones() {
