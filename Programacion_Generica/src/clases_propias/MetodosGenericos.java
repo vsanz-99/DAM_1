@@ -46,7 +46,7 @@ public class MetodosGenericos {
 class MisMatrices {
 
 	// Metodo de generico y de clase
-	public static <T extends Comparable> T getMenor(T[]a) { // Comparar dos elementos genericos entre si
+	public static <T extends Comparable> T getMenor(T[] a) { // Comparar dos elementos genericos entre si
 
 		// Todos los objetos que pasen por este metodo generico tienen que ser objetos que implementen la interfaz comparable
 
