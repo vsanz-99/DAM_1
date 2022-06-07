@@ -103,6 +103,7 @@ class Empleado implements Serializable {
 
 	}
 
+	@Override
 	public String toString() { // Pertenece a la clase Object, toString--Object
 
 		return "El nombre es = "+nombre+", y su sueldo es = "+sueldo+", fecha de contrato = "+fechaContrato;

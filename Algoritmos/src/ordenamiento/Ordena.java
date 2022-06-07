@@ -17,7 +17,7 @@ public class Ordena {
 
 	// ----------------------------------------------------------------------------
 
-	// Ordenamiento por selección:
+	// Ordenamiento por seleccion:
 	public static void seleccion(int[] data) {
 		for (int i=0; i<data.length; i++) {
 			for (int j=i; j<data.length; j++) {
@@ -32,7 +32,7 @@ public class Ordena {
 
 	// ----------------------------------------------------------------------------
 
-	// Ordenamiento por inserción:
+	// Ordenamiento por insercion:
 	public static void insercion(int[] data) {
 		for (int i=1; i<data.length; i++) {
 			int aux=data[i];
@@ -47,18 +47,16 @@ public class Ordena {
 
 	// ----------------------------------------------------------------------------
 
-	// Ordenamiento por el método Shell:
+	// Ordenamiento por el metodo Shell:
 	public static void shell(int[] data) {
-
 		int salto, aux, i;
 		boolean cambios;
-
 		for (salto=data.length/2; salto!=0; salto/=2) {
 			cambios=true;
-			while (cambios) { // Mientras se intercambie algún elemento.                                         
+			while (cambios) { // Mientras se intercambie algun elemento.                                         
 				cambios=false;
 				for (i=salto; i<data.length; i++) { // Se da una pasada
-					if (data[i-salto]>data[i]) {    // y si están desordenados
+					if (data[i-salto]>data[i]) {    // y si estan desordenados
 						aux=data[i];                // se reordenan.
 						data[i]=data[i-salto];
 						data[i-salto]=aux;
@@ -71,32 +69,27 @@ public class Ordena {
 
 	// ----------------------------------------------------------------------------
 
-	// Ordenamiento rápido (QuickSort):
+	// Ordenamiento rapido (QuickSort):
 	public static void quicksort(int[] data, int izq, int der) {
-
-		int pivote=data[izq]; // Tomamos primer elemento como pivote,
-		int i=izq;         	  // i realiza la búsqueda de izquierda a derecha y
-		int j=der;         	  // j realiza la búsqueda de derecha a izquierda.
+		int pivote=data[izq]; 	// Tomamos primer elemento como pivote,
+		int i=izq;         	  	// i realiza la busqueda de izquierda a derecha y
+		int j=der;         	  	// j realiza la busqueda de derecha a izquierda.
 		int aux;
-
-		while(i<j){                          	// Mientras no se crucen las búsquedas.                                   
-			while(data[i]<=pivote && i<j) i++;  // Busca un elemento mayor que el pivote.
-			while(data[j]>pivote) j--;          // Busca un elemento menor que el pivote.
-			if (i<j) {                        	// Si no se han cruzado                      
-				aux=data[i];                    // los intercambia.
+		while (i<j) {                          		// Mientras no se crucen las busquedas.                                   
+			while (data[i]<=pivote && i<j) i++; 	// Busca un elemento mayor que el pivote.
+			while (data[j]>pivote) j--;          	// Busca un elemento menor que el pivote.
+			if (i<j) {                        		// Si no se han cruzado                      
+				aux=data[i];                    	// los intercambia.
 				data[i]=data[j];
 				data[j]=aux;
 			}
 		}
-
 		data[izq]=data[j];   // Se coloca el pivote en su lugar, de forma que tendremos                                    
 		data[j]=pivote;      // los menores a su izquierda y los mayores a su derecha.
-
-		if(izq<j-1)
+		if (izq<j-1)
 			quicksort(data, izq, j-1);          // Ordenamos el subarray izquierdo.
-		if(j+1<der)
+		if (j+1<der)
 			quicksort(data, j+1, der);          // Ordenamos el subarray derecho.
-
 	}
 
 }

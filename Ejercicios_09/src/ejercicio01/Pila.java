@@ -1,13 +1,19 @@
 package ejercicio01;
 
-public abstract class Pila {
+/**
+ * <p><i>Archivo: Pila.java</i></p>
+ * </p><b>Ejercicio 01</b>.</p>
+ * @since 07/06/2022
+ * @version 1.0
+ * @author Victor Sanz*/
 
-	public final int MAXSIZE=100; // Numero maximo de elementos que se pueden
-								  // insertar en la pila
-	public abstract void push(int x); // Metodo para insertar
-	
-	public abstract int pop(); // Metodo para sacar
-	
-	public abstract int size(); // Metodo para conocer el numero de elementos apilados
-	
+public abstract class Pila {
+	// Numero maximo de elementos que se pueden insertar en la pila.
+	public final int MAXSIZE=100; 
+	// Metodo para insertar.							  
+	public abstract void push(int n);
+	// Metodo para sacar
+	public abstract int pop();
+	// Metodo para conocer el numero de elementos apilados.
+	public abstract int size();
 }

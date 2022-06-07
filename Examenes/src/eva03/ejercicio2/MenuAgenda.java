@@ -14,9 +14,8 @@ import java.util.Scanner;
 
 public class MenuAgenda { // Clase MenuAgenda.
 
-	String fichero="H:"+File.separator+"eclipse_myworkspace"+File.separator
-			+"Examenes"+File.separator+"src"+File.separator+"eva03"
-			+File.separator+"agenda.dat"; // Nombre del fichero que se cargara en la coleccion.
+	String fichero="H:/eclipse_myworkspace/Examenes/src/eva03/"
+			+"agenda.dat"; // Nombre del fichero que se cargara en la coleccion.
 
 	Agenda agenda=new Agenda(fichero); // Instanciacion de un nuevo objeto de la clase Agenda.
 

@@ -15,10 +15,8 @@ import java.io.IOException;
 public class Fichero01 {
 
 	public static void main(String[] args) {
-		
 		final String nomFichero="H:"+File.separator+"eclipse_myworkspace"+File.separator+"Miscelanea"+
-		File.separator+"src"+File.separator+"ficheros"+File.separator+"Ejercicio1.txt";
-		
+				File.separator+"src"+File.separator+"ficheros"+File.separator+"Ejercicio1.txt";
 		try (FileReader fich=new FileReader(nomFichero)) {
 			int valor=fich.read();
 			while (valor!=-1) {
@@ -33,7 +31,6 @@ public class Fichero01 {
 			System.out.println("\tEl fichero no existe o ruta del fichero "
 					+ "incorrecta "+e);
 		}
-
 	}
 
 }
