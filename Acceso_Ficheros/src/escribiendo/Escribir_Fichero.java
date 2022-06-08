@@ -5,11 +5,8 @@ import java.io.IOException;
 public class Escribir_Fichero {
 
 	public static void main(String[] args) {
-
 		Escribiendo accede_escritura=new Escribiendo();
-
 		accede_escritura.escribir();
-
 	}
 
 }
@@ -17,9 +14,7 @@ public class Escribir_Fichero {
 class Escribiendo {
 
 	public void escribir() {
-
 		String frase="Esto es otra prueba de escritura";
-
 		try {
 			FileWriter escritura=new FileWriter("C:/Users/PC/Downloads/reciente/texto_nuevo.txt", true); // En el caso de que exista el fichero
 																										 // Sin el true, sobreescribe el fichero
@@ -30,7 +25,6 @@ class Escribiendo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
