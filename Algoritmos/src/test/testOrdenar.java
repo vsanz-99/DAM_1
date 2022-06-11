@@ -11,7 +11,7 @@ public class testOrdenar {
 		//Ordena.shell(vals);
 		//Ordena.quicksort(vals, 0, 7);
 		for (int val : vals) {
-			System.out.println(val);
+			System.out.print(val+" ");
 		}
 	}
 

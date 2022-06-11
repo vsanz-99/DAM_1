@@ -1,4 +1,3 @@
-package ejercicio12;
 import java.util.Scanner;
 
 /**
@@ -11,41 +10,30 @@ import java.util.Scanner;
 
 public class Ejercicio_04_12 {
 
-	/**
-	 * @param args
-	 */
-
 	public static void main(String[] args) {
-		try (Scanner teclado = new Scanner(System.in)) {
-			String palabraintro = "";
-			String palabraactu = palabraintro;
-			int longitud = palabraintro.length();
-			int cont = 1;
-			int m = 0;
-
+		Scanner teclado=new Scanner(System.in);
+		String palabraintro="";
+		int cont=1; int m=0;
+		do {
 			System.out.println("Introduce una palabra: ");
-			palabraintro = teclado.nextLine();
-
-			if ( longitud <= 20 ) {
-				System.out.println("\n Palabra introducida: " + palabraintro); 
-
-				for ( int i = 0; i < longitud - 1; i++ ) {
-
-					palabraintro = palabraintro.charAt(longitud - 1) + palabraintro.substring(m, longitud - 1);
-					System.out.print("\n Esta es la rotacion numero: " + cont++);
-					System.out.println(" --> " + palabraintro);
-				}
-
-				System.out.print("\n Esta es la rotacion numero: " + cont++);
-				System.out.println(" --> " + palabraactu);
-
-			} else {
-
-				System.out.println("\n Ha introducido mas de 20 caracteres.");
-				System.out.println("\n Fin del programa.");
+			palabraintro=teclado.nextLine();
+		} while (palabraintro.isEmpty());
+		teclado.close();
+		int longitud=palabraintro.length();
+		String palabraactu=palabraintro;
+		if (longitud<=20) {
+			System.out.println("\nPalabra introducida: "+palabraintro); 
+			for (int i=0; i<longitud-1; i++) {
+				palabraintro=palabraintro.charAt(longitud-1)+palabraintro.substring(m, longitud-1);
+				System.out.print("\nEsta es la rotacion numero: "+cont++);
+				System.out.println("\n--> "+palabraintro);
 			}
-
-			teclado.close();
+			System.out.print("\nEsta es la rotacion numero: "+cont++);
+			System.out.println("\n--> "+palabraactu);
+		} else {
+			System.out.println("\n\tHa introducido mas de 20 caracteres.");
+			System.out.println("\n\tFin del programa.");
 		}
 	}
+
 }

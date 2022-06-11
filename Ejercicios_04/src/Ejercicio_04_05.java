@@ -1,4 +1,3 @@
-package ejercicio05;
 import java.util.Scanner;
 
 /**
@@ -11,39 +10,30 @@ import java.util.Scanner;
 
 public class Ejercicio_04_05 {
 
-	/**
-	 * @param args
-	 */
-
 	public static void main(String[] args) {
-		try (Scanner teclado = new Scanner(System.in)) {
-			String miCadena = "";
+		Scanner teclado=new Scanner(System.in);
+		String miCadena="";
+		do {
 			System.out.println("Introduce una cadena de caracteres: ");
-			miCadena = teclado.nextLine();
-			int longitud = miCadena.length();
-
-			if ( longitud <= 80 ) {
-
-				System.out.print("\n Letras en posicion impar: ");
-
-				for (int impar = 0; impar < longitud; impar += 2) {
+			miCadena=teclado.nextLine();
+		} while (miCadena.isEmpty());
+		teclado.close();
+		int longitud=miCadena.length();
+		if (longitud<=80) {
+			System.out.print("\nLetras en posicion impar: ");
+			for (int impar=0; impar<longitud; impar+=2) {
+				if (miCadena.charAt(impar)!=' ')
 					System.out.print(miCadena.charAt(impar));
-				}
-
-				System.out.print("\n Letras en posicion par: ");
-
-				for (int par = 1; par < longitud; par += 2) {
-					System.out.print(miCadena.charAt(par));
-				}
-
-			} else {
-				System.out.println("\n Ha introducido mas de 80 caracteres. ");
-				System.out.println("\n Fin del programa. ");
 			}
-
-			teclado.close();
+			System.out.print("\nLetras en posicion par: ");
+			for (int par=1; par<longitud; par+=2) {
+				if (miCadena.charAt(par)!=' ')
+					System.out.print(miCadena.charAt(par));
+			}
+		} else {
+			System.out.println("\n\tHa introducido mas de 80 caracteres.");
+			System.out.println("\n\tFin del programa.");
 		}
-
 	}
 
 }

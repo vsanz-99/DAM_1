@@ -1,4 +1,3 @@
-package ejercicio01;
 import java.util.Scanner;
 
 /**
@@ -9,32 +8,22 @@ import java.util.Scanner;
 
 public class Ejercicio_04_01 {
 
-	/**
-	 * @param args
-	 */
-
 	public static void main(String[] args) {
-		try (Scanner teclado = new Scanner(System.in)) { 
-			String miCadena = "";
-			System.out.println("Introduce una cadena de caracteres: ");
-			miCadena = teclado.nextLine();
-
-			if ( miCadena.length() <= 80 ) {
-				System.out.println("\n Leyendo progresivamente la cadena introducida ... ");
-				int m = 0;
-				for ( int i = 0; i < miCadena.length(); i++ ) {
-					System.out.println(miCadena.substring( m, i + 1 ));
-				}
-
-			} else {
-				System.out.println("\n Ha introducido mas de 80 caracteres. ");
-				System.out.println("\n Fin del programa. ");
+		Scanner teclado=new Scanner(System.in);
+		String miCadena="";
+		System.out.println("Introduce una cadena de caracteres: ");
+		miCadena=teclado.nextLine();
+		teclado.close();
+		if (miCadena.length()<=80) {
+			System.out.println("\nLeyendo progresivamente la cadena introducida ...");
+			int m=0;
+			for (int i=0; i<miCadena.length(); i++) {
+				System.out.println(miCadena.substring(m, i+1));
 			}
-
-			teclado.close();
-
+		} else {
+			System.out.println("\n\tHa introducido mas de 80 caracteres. ");
+			System.out.println("\n\tFin del programa. ");
 		}
-
 	}
 
 }

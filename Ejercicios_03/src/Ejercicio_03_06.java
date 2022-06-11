@@ -1,4 +1,3 @@
-package ejercicio06;
 import java.util.Scanner;
 
 /**
@@ -7,35 +6,30 @@ import java.util.Scanner;
  * en lugar par y de los introducidos en lugar impar.</p>
  * @since 08/11/2021
  * @version 1.0
- * @param args
  * @author Victor Sanz*/
 
 public class Ejercicio_03_06 {
 
 	public static void main(String[] args) {
-		Scanner teclado = new Scanner(System.in);
-		int num = 0; int suma_par = 0; int suma_impar = 0; int cont = 0;
-
-		System.out.println("Introducir 0 para finalizar.");
-
+		Scanner teclado=new Scanner(System.in);
+		int num, suma_par, suma_impar, contador;
+		num=suma_par=suma_impar=contador=0;
+		System.out.println("Introducir 0 para finalizar la entrada de datos.\n");
 		do {
 			System.out.print("Introduce un numero: ");
-			num = teclado.nextInt();
-
-			if ( cont % 2 == 0 ) {
-				suma_par += num;
-				cont++;
+			num=Integer.parseInt(teclado.nextLine());
+			if (contador%2==0) {
+				suma_impar+=num;
+				contador++;
 			} else {
-				suma_impar += num;
-				cont ++;
+				suma_par+=num;
+				contador++;
 			}
-		} while ( num != 0 );
-		
-		System.out.println("\n Se han introducido: " + --cont + " numeros.");
-		System.out.println("\n Suma de los numeros introducidos en lugar par: " + suma_par);
-		System.out.println("\n Suma de los numeros introducidos en lugar impar: " + suma_impar);
-
+		} while (num!=0);
 		teclado.close();
+		System.out.println("\n\tSe han introducido: "+--contador+" numeros.");
+		System.out.println("\n\tSuma de los numeros introducidos en lugar par: "+suma_par);
+		System.out.println("\n\tSuma de los numeros introducidos en lugar impar: "+suma_impar);
 	}
 
 }

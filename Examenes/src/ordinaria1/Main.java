@@ -1,12 +1,11 @@
 package ordinaria1;
-
 import java.io.IOException;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		Menu menu = new Menu ("../../Pav�nFraile1Or/Datos.dat");
-
+		@SuppressWarnings("unused")
+		Menu menu=new Menu ("datos.dat");
 	}
 
 }

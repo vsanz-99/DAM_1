@@ -1,4 +1,3 @@
-package ejercicio02;
 import java.util.Scanner;
 
 /**
@@ -10,54 +9,39 @@ import java.util.Scanner;
 
 public class Ejercicio_04_02 {
 
-	/**
-	 * @param args
-	 */
-
 	public static void main(String[] args) {
-		try (Scanner teclado = new Scanner(System.in)) {
-			String miCadena = "";
+		 	Scanner teclado=new Scanner(System.in);
+			String miCadena="";
 			System.out.println("Introduce una cadena de caracteres: ");
-			miCadena = teclado.nextLine();
-
-			if ( miCadena.length() <= 80 ) {
-				System.out.println("\n Cadena de caracteres introducida: " + miCadena);
-				System.out.println("\n Longitud de la cadena introducida: " + miCadena.length());
-
-				var upperCase = 0;
-				var lowerCase = 0;
-
+			miCadena=teclado.nextLine();
+			teclado.close();
+			if (miCadena.length()<=80) {
+				System.out.println("\n\tCadena de caracteres introducida: "+miCadena);
+				System.out.println("\n\tLongitud de la cadena introducida: "+miCadena.length());
+				var upperCase=0;
+				var lowerCase=0;
 				// Metodos utilizados: isUpperCase(char ch) y isLowerCase(char ch). 
-
-				for ( int i = 0; i < miCadena.length(); i++ ) {
-
-					// letra = miCadena.charAt();
-					// int minusculas = 0, mayusculas = 0;
-					// BUCLE ( condicion ) {
-					// if ( letra >= "a" || letra <= "z" )
+				for (int i=0; i<miCadena.length(); i++) {
+					// letra=miCadena.charAt();
+					// int minusculas=0, mayusculas=0;
+					// BUCLE (condicion) {
+					// if ((letra>="a") || (letra<="z"))
 					//		minusculas++;
-					// if ( letra >= "A" || letra <= "Z")
+					// if ((letra >= "A") || (letra <= "Z"))
 					//		mayusculas++;
 					// }
-
 					// Letras mayusculas.
-					if (Character.isUpperCase(miCadena.charAt(i))) upperCase++;
-
+					if (Character.isUpperCase(miCadena.charAt(i))) 
+						upperCase++;
 					// Letras minusculas.
-					if (Character.isLowerCase(miCadena.charAt(i))) lowerCase++;
+					if (Character.isLowerCase(miCadena.charAt(i))) 
+						lowerCase++;
 				}
-
-				System.out.println("\n Hay " + upperCase + " letras mayusculas y " + lowerCase + " letras minusculas.");
-
+				System.out.println("\n\tHay "+upperCase+" letras mayusculas y "+lowerCase+" letras minusculas.");
 			} else {
-				System.out.println("\n Ha introducido mas de 80 caracteres. ");
-				System.out.println("\n Fin del programa. ");
+				System.out.println("\n\tHa introducido mas de 80 caracteres.");
+				System.out.println("\n\tFin del programa.");
 			}
-
-			teclado.close();
-
 		}
-
-	}
 
 }

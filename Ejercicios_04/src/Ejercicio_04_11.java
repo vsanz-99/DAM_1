@@ -1,4 +1,3 @@
-package ejercicio11;
 import java.util.Scanner;
 
 /**
@@ -12,51 +11,40 @@ import java.util.Scanner;
 
 public class Ejercicio_04_11 {
 
-	/**
-	 * @param args
-	 */
-
 	public static void main(String[] args) {
-		Scanner teclado = new Scanner(System.in);
-		char [] Arraycadena;
-		char caracter = 0;
-		String cadenaintro = "";
-
-		System.out.println("Introduce una frase por teclado: \n");
-		cadenaintro = teclado.nextLine();
-		String cadenamod = cadenaintro.replace(" ", "");
-
-		int longitud = cadenamod.length();
-
-		if ( longitud <= 60 ) {
-			
-			cadenamod = cadenamod.toUpperCase();
-			
-			System.out.println("Entrada: \t" + cadenamod + "\n");
-			Arraycadena = cadenamod.toCharArray();
-			
-			char [] Arraycaracteres = new char[longitud];
-			int [] ArraycuantasVeces = new int[longitud];
-
-			for ( int i = 0; i < Arraycadena.length; i++ ) {
-				caracter = Arraycadena[i];   
-				Arraycaracteres[i] = caracter;
-				for ( int j = i; j < Arraycadena.length; j++ ) {                  
-					if( Arraycadena[j] == caracter ) {
+		Scanner teclado=new Scanner(System.in);
+		char[] Arraycadena;
+		char caracter=0;
+		String cadenaintro="";
+		do {
+			System.out.println("Introduce una frase por teclado: ");
+			cadenaintro=teclado.nextLine();
+		} while (cadenaintro.isEmpty());
+		teclado.close();
+		String cadenamod=cadenaintro.replace(" ", "");
+		int longitud=cadenamod.length();
+		if (longitud<=60) {
+			cadenamod=cadenamod.toUpperCase();
+			System.out.println("Entrada: \t"+cadenamod+"\n");
+			Arraycadena=cadenamod.toCharArray();
+			char[] Arraycaracteres=new char[longitud];
+			int[] ArraycuantasVeces=new int[longitud];
+			for (int i=0; i<Arraycadena.length; i++) {
+				caracter=Arraycadena[i];   
+				Arraycaracteres[i]=caracter;
+				for (int j=i; j<Arraycadena.length; j++) {                  
+					if (Arraycadena[j]==caracter) {
 						ArraycuantasVeces[i]++;
-						Arraycadena[j] = ' ';
+						Arraycadena[j]=' ';
 					}
 				}    
-				if( Arraycaracteres[i] != ' ' )
-					System.out.println("Salida: " + Arraycaracteres [i] + "\t" + ArraycuantasVeces[i] + " vez/veces. \n");
+				if (Arraycaracteres[i]!=' ')
+					System.out.println("Salida: \t"+Arraycaracteres[i]+"\t"+ArraycuantasVeces[i]+" vez/veces.\n");
 			}
 		} else {
-			System.out.println("\n Ha introducido mas de 60 caracteres.");
-			System.out.println("\n Fin del programa.");
+			System.out.println("\n\tHa introducido mas de 60 caracteres.");
+			System.out.println("\n\tFin del programa.");
 		}
-
-		teclado.close();
-
 	}
 
 }

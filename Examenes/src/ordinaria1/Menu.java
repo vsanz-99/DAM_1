@@ -1,51 +1,39 @@
 package ordinaria1;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 public class Menu {
 
-
-	// Nombre del archivo de Objetos vehiculo
+	// Nombre del archivo de Objetos vehiculo.
 	String fichero;
+	// Entrada de datos.
+	Scanner tec=new Scanner(System.in);
+	// Arrays.
+	ArrayList <Vehiculo> vehiculos=new ArrayList<Vehiculo>();
 
-	// Entrada de datos
-	Scanner tec = new Scanner(System.in);
-
-	// Arrays
-	ArrayList <Vehiculo> vehiculos = new ArrayList<Vehiculo>();
-
-
-	public Menu (String archivo) throws IOException {	
-		fichero = archivo;
-
-		// HAY QUE CREAR EL FICHERO ANTES DE INICIAR EL PROGRAMA, SINO DA UN ERROR AL INSERTAR LOS DATOS
-		// EL FICHERO TIENE QUE SER CREADO EN LA CARPETA DEL WORKSPACE
-		Insertar ins = new Insertar(fichero);
-		if(!ins.tieneSiguiente()) {
+	public Menu(String archivo) throws IOException {	
+		fichero=archivo;
+		// HAY QUE CREAR EL FICHERO ANTES DE INICIAR EL PROGRAMA, SINO MUESTRA UN ERROR AL INSERTAR LOS DATOS.
+		// EL FICHERO TIENE QUE SER CREADO EN LA CARPETA DEL WORKSPACE.
+		Insertar ins=new Insertar(fichero);
+		if (!ins.tieneSiguiente())
 			ins.rInsertarVehiculos(vehiculos);
-		}
 		ins.finalizar();
-
 		boolean fin;
 		do {
-			fin = trabajo();
-		} while ( ! fin );
+			fin=trabajo();
+		} while (!fin);
 	}
 
-	// MENSAJE MENU
+	// MENSAJE MENU.
 	private void imprimir ( ) {
-		System.out.println("Elija una opcion");
-		System.out.println(
-				"1.- Añadir un vehículo\n"
-						+ "2.- Eliminar un vehículo\n"
-						+ "3.- Listado Vehiculos\n"
+		System.out.println("Elija una opcion: ");
+		System.out.println("1.- Anadir un vehiculo.\n"
+						+ "2.- Eliminar un vehiculo.\n"
+						+ "3.- Listado Vehiculos.\n"
 						+ "4.- Datos del Vehiculo\n"
 						+ "5.- Vehiculos por marca\n"
 						+ "6.- Coches por tipo de combustible\n"
