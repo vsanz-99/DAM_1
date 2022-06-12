@@ -1,4 +1,5 @@
 package eva01;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -12,50 +13,34 @@ import java.util.Scanner;
 public class Operaciones2Numeros {
 
 	public static void main(String[] args) {
-
-		int num1=0; int num2=0;
-		int suma=0; int resta=0; int multiplicacion=0; double division=0;
-
-		@SuppressWarnings("resource")
+		int num1, num2, suma, resta, multiplicacion;
+		num1=num2=suma=resta=multiplicacion=0;
+		double division=0.0d;
 		Scanner teclado=new Scanner(System.in);
-
 		System.out.println("\tBienvenido al Programa para Sumar, Restar, Multiplicar y Dividir dos numeros.");
 		System.out.println("\t-----------------------------------------------------------------------------");
-
 		do {
-
 			System.out.println("\tIntroduce el primer numero: ");
-			num1=teclado.nextInt();
-
-		} while (num1<=0.0);
-
+			num1=Integer.parseInt(teclado.nextLine());
+		} while (num1<=0);
 		do {
-
-			System.out.println("\tIntroduce el segundo numero (tiene que ser menor que el primero): ");
-			num2=teclado.nextInt();
-
-		} while (num2<=0.0 && num2>num1);
-
-		// Suma
+			System.out.println("\tIntroduce el segundo numero: ");
+			num2=Integer.parseInt(teclado.nextLine());
+		} while (num2<=0);
+		teclado.close();
+		// Suma:
 		suma=num1+num2;
-
-		System.out.println("\tLa suma de los dos numeros es: "+num1+"+"+num2+"="+suma);
-
-		// Resta
+		System.out.println("\n\tLa suma de los dos numeros es: "+num1+" + "+num2+" = "+suma);
+		// Resta:
 		resta=num1-num2;
-
-		System.out.println("\tLa resta de los dos numeros es: "+num1+"-"+num2+"="+resta);
-
-		// Multiplicacion
+		System.out.println("\n\tLa resta de los dos numeros es: "+num1+" - "+num2+" = "+resta);
+		// Multiplicacion:
 		multiplicacion=num1*num2;
-
-		System.out.println("\tLa multiplicacion de los dos numeros es: "+num1+"*"+num2+"="+multiplicacion);
-
-		// Division 
+		System.out.println("\n\tLa multiplicacion de los dos numeros es: "+num1+" * "+num2+" = "+multiplicacion);
+		// Division:
+		DecimalFormat df=new DecimalFormat("###.##");
 		division=(double)num1/num2;
-
-		System.out.println("\tLa division de los dos numeros es: "+num1+"/"+num2+"="+division);
-
+		System.out.println("\n\tLa division de los dos numeros es: "+num1+" / "+num2+" = "+df.format(division));
 	}
 
 }

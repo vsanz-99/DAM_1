@@ -11,34 +11,23 @@ import java.util.Scanner;
 public class AreaRectangulo {
 
 	public static void main(String[] args) {
-
-		double base=0; double altura=0; double area=0;
-
-		@SuppressWarnings("resource")
+		double base, altura, area;
+		base=altura=area=0.0d;
 		Scanner teclado=new Scanner(System.in);
-
-		System.out.println("\tBienvenido al Programa para Calcular el Area de un Triangulo.");
+		System.out.println("\tBienvenido al Programa para Calcular el Area de un Rectangulo.");
 		System.out.println("\t-------------------------------------------------------------");
-
 		do {
-
 			System.out.println("\tIntroduce la base en cm: ");
-			base=teclado.nextDouble();
-
-		} while (base<=0.0);
-
+			base=Double.parseDouble(teclado.nextLine());
+		} while (base<=0);
 		do {
-
 			System.out.println("\tIntroduce la altura en cm: ");
-			altura=teclado.nextDouble();
-
-		} while (base<=0.0);
-
-		// Calcular el Area del Rectangulo
+			altura=Double.parseDouble(teclado.nextLine());
+		} while (base<=0);
+		teclado.close();
+		// Calcular el Area del Rectangulo.
 		area=base*altura;
-
 		System.out.println("\tEl area del rectangulo es de "+area+" cm^2.");
-
 	}
 
 }

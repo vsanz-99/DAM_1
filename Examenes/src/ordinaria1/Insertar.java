@@ -1,5 +1,4 @@
 package ordinaria1;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -16,98 +15,93 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
+/**
+ * <p><i>Archivo: Insertar.java</i></p>
+ * <p><b>1ª Convocatoria</b>.</p>
+ * @since 11/06/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
 public class Insertar {
 
 	String fichero;
-	Scanner s = null;
-	boolean add = true;
+	Scanner s=null;
+	boolean add=true;
 
-	public Insertar ( String archivo ) {
-		fichero = archivo;
-
+	public Insertar(String archivo) {
+		fichero=archivo;
 		try {
-			s = new Scanner(
+			s=new Scanner(
 					new BufferedReader(
 							new FileReader(fichero)));
 		} catch (FileNotFoundException e1) {
-			add = false;
+			add=false;
 		}
 	}
 
-
-	// FINALIZA
-	public void finalizar ( ) {
-		if ( s != null )
+	// FINALIZA.
+	public void finalizar() {
+		if (s!=null)
 			s.close();
-		s = null;
+		s=null;
 	}
 
-	//AÑADE VEHICULOS
+	// ANADE VEHICULOS.
 	public void annadirVehiculo(Vehiculo vh) throws IOException {
-
-		if ( s != null )
+		if (s!=null )
 			s.close();
-		s = null;
-		ObjectOutputStream oos = null;
-
+		s=null;
+		ObjectOutputStream oos=null;
 		try {
-			oos = new ObjectOutputStream(
+			oos=new ObjectOutputStream(
 					new FileOutputStream(fichero, add));
-
 			oos.writeObject(vh);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			oos.close();
 		}
 	}
 
-	// INSERTA LOS VEHICULOS DEL FICHERO AL ARRAYLIST
-	public void rInsertarVehiculos(ArrayList <Vehiculo> v) {
-		try
-		{
-			FileInputStream fis = new FileInputStream(fichero);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-
-			v.add((Vehiculo) ois.readObject());
-
+	// INSERTA LOS VEHICULOS DEL FICHERO AL ARRAYLIST.
+	public void rInsertarVehiculos(ArrayList<Vehiculo> v) {
+		try {
+			FileInputStream fis=new FileInputStream(fichero);
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			v.add((Vehiculo)ois.readObject());
 			ois.close();
 			fis.close();
-		} 
-		catch (IOException ioe) 
-		{
+		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			return;
-		} 
-		catch (ClassNotFoundException c) 
-		{
-			System.out.println("Class not found");
-			c.printStackTrace();
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("\tClass not found.");
+			cnfe.printStackTrace();
 			return;
 		}
 	}
-	//BORRAR
-	public void borrarTodo() throws IOException{
-		if ( s != null )
-			s.close();
-		s = null;
-		Writer fw = null;
 
+	// BORRAR.
+	public void borrarTodo() throws IOException {
+		if (s!=null )
+			s.close();
+		s=null;
+		Writer fw=null;
 		try {
-			fw = new FileWriter(fichero, false);
+			fw=new FileWriter(fichero, false);
 			fw.write("");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
 		} finally {
 			fw.close();
 		}
 	}
-	//FICHERO VACIO
-	public boolean tieneSiguiente() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(fichero));     
-		return br.readLine() == null;
 
+	// FICHERO VACIO.
+	public boolean tieneSiguiente() throws IOException {
+		BufferedReader br=new BufferedReader(
+				new FileReader(fichero));     
+		return br.readLine()==null;
 	}
+
 }

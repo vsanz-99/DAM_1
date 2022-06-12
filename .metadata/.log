@@ -2936,3 +2936,1303 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2022-06-11 20:44:56.472 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=17.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.oomph.p2.core 2 0 2022-06-11 20:44:58.064
+!MESSAGE Failed to register the thread safe credentials providers: 'java.util.Map org.eclipse.core.internal.runtime.AdapterManager.getFactories()'
+
+!ENTRY org.eclipse.jface 2 0 2022-06-11 20:45:01.559
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-06-11 20:45:01.559
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1626bddf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@29532e91,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-06-11 20:45:03.786
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\PC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2022-06-11 22:38:27.752
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package ordinaria1;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * <p><i>Archivo: Menu.java</i></p>
+ * <p><b>1ª Convocatoria</b>.</p>
+ * @since 11/06/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class Menu {
+
+	// Nombre del archivo de Objetos Vehiculo.
+	String fichero;
+	// Entrada de datos.
+	Scanner tec=new Scanner(System.in);
+	// Array.
+	ArrayList<Vehiculo> vehiculos=new ArrayList<Vehiculo>();
+
+	public Menu(String archivo) throws IOException {	
+		fichero=archivo;
+		// HAY QUE CREAR EL FICHERO ANTES DE INICIAR EL PROGRAMA, SINO MUESTRA UN ERROR AL INSERTAR LOS DATOS.
+		// EL FICHERO TIENE QUE SER CREADO EN LA CARPETA DEL WORKSPACE.
+		Insertar ins=new Insertar(fichero);
+		if (!ins.tieneSiguiente())
+			ins.rInsertarVehiculos(vehiculos);
+		ins.finalizar();
+		boolean fin;
+		do {
+			fin=trabajo();
+		} while (!fin);
+	}
+
+	// MENSAJE MENU.
+	private void imprimir() {
+		System.out.println("Elige una opcion: \n"
+				+"\t1.- Anadir un vehiculo.\n"
+				+"\t2.- Eliminar un vehiculo.\n"
+				+"\t3.- Listado de vehiculos.\n"
+				+"\t4.- Datos de un vehiculo.\n"
+				+"\t5.- Listar vehiculos por marca.\n"
+				+"\t6.- Listar coches por tipo de combustible.\n"
+				+"\t7.- Listar vehiculos por anio de venta.\n"
+				+"\t8.- Guardar datos (confirmar cambios).\n"
+				+"\t0.- Salir del programa.");
+	}
+
+	// MENU.
+	private boolean trabajo() throws IOException {
+		int opcion;
+		do {
+			imprimir();
+			try {
+				System.out.println("--> ");
+				opcion=tec.nextInt();
+				tec.nextLine();
+			} catch (Exception e) {
+				System.out.println("\tDebe introducir un numero entre 1 y 7.");
+				opcion=0;
+				tec.next();
+			}
+		} while ((opcion<0) || (opcion>8));
+		if (opcion==0)
+			return true;
+		switch (opcion) {
+		case 1 :
+			aVehiculo();
+			break;
+		case 2 :
+			bVehiculo();
+			break;
+		case 3 :
+			lVehiculos();
+			break;
+		case 4 :
+			cDatos();
+			break;
+		case 5 :
+			listaMarca();
+			break;
+		case 6 :
+			listaTCombustible();
+			break;
+		case 7 :
+			//listaAVenta();
+			break;
+		case 8:
+			modFichero();
+			System.out.println("\tGuardado con exito.");
+			break;
+		}
+		return false;
+	}
+	
+	// ANADE VEHICULO.
+	private void aVehiculo() {
+		boolean verify=false;
+		do {
+			System.out.println("¿Que tipo de vehiculo quiere anadir?");
+			System.out.println("\t1-. Coche de combustion.\n"
+					+"\t2-. Coche electrico \n"
+					+"\t3-. Moto");
+			int opcion=tec.nextInt();
+			tec.nextLine();
+			switch (opcion) {
+			case 1 :
+				crearCombustible();
+				verify=true;
+				break;
+			case 2:
+				crearElectrico();
+				verify=true;
+				break;
+			case 3:
+				crearMoto();
+				verify=true;
+				break;
+			default :
+				System.out.println("\tATENCION: Opcion NO reconocida por el sistema.");
+				verify=false;
+			}
+		} while (!verify);
+	}
+
+	// CREA COCHE DE COMBUSTIBLE.
+	public void crearCombustible() {
+		String marca, modelo, tipoCombustible;
+		marca=modelo=tipoCombustible="";
+		int aAparicion, tVida, plazas, potencia, cilindrada;
+		aAparicion=tVida=plazas=potencia=cilindrada=0;
+		Random r=new Random();
+		System.out.println("Introduce los siguientes datos:");
+		System.out.println("¿Marca?");
+		marca=tec.nextLine();
+		System.out.println("¿Modelo?");
+		modelo=tec.nextLine();
+		do {
+			System.out.println("¿Anio de aparicion?");
+			aAparicion=tec.nextInt();
+		}while(aAparicion<1885);
+		tec.nextLine();
+		do {
+			System.out.println("¿Tiempo de vida?");
+			tVida=r.nextInt(21);
+		} while ((tVida<5) || (tVida>20));
+		System.out.println("\tEl tiempo de vida anadido de forma aleatoria es: "+tVida+" anios");
+		do {
+			System.out.println("¿Numero de plazas?");
+			plazas=tec.nextInt();
+		} while ((plazas<1) && (plazas>7));
+		System.out.println("¿Potencia? (CV)");
+		potencia=tec.nextInt();
+		do {
+			System.out.println("¿Tipo de combustible? (gasolina, diesel, etanol)");
+			tipoCombustible=tec.nextLine();
+		}while ((!tipoCombustible.equalsIgnoreCase("gasolina")) || 
+				(!tipoCombustible.equalsIgnoreCase("diesel")) || 
+				(!tipoCombustible.equalsIgnoreCase("etanol")));
+		System.out.println("¿Cilindrada? (cc)");
+		cilindrada=tec.nextInt();
+		String vCreado=marca+" "+modelo;
+		if (!existeVehiculo(vCreado)) {
+			Vehiculo c=new CocheCombustion(marca, modelo, aAparicion, tVida, 
+					plazas, potencia, tipoCombustible, cilindrada);
+			vehiculos.add(c);
+			System.out.println("\tVehiculo anadido.");
+		}
+	}
+
+	// CREA COCHE ELECTRICO.
+	public void crearElectrico() {
+		String marca, modelo;
+		marca=modelo="";
+		int aAparicion, tVida, plazas, potencia, autonomia, cRapida;
+		aAparicion=tVida=plazas=potencia=autonomia=cRapida=0;
+		Random r=new Random();
+		System.out.println("Introduce los siguientes datos: ");
+		System.out.println("¿Marca?");
+		marca=tec.nextLine();
+		System.out.println("¿Modelo?");
+		modelo=tec.nextLine();
+		do {
+			System.out.println("¿Anio de aparicion?");
+			aAparicion=tec.nextInt();
+		} while (aAparicion<1885);
+		tec.nextLine();
+		do {
+			System.out.println("¿Tiempo de vida?");
+			tVida=r.nextInt(21);
+		} while ((tVida<5) || (tVida>20));
+		System.out.println("\tEl tiempo de vida anadido de forma aleatoria es: "+tVida+" anios");
+		do {
+			System.out.println("¿Numero de plazas?");
+			plazas=tec.nextInt();
+			tec.nextLine();
+		} while ((plazas<1) (plazas>7));
+
+		System.out.println("Potencia (CV): ");
+		potencia = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("Autonomia(KM): ");
+		autonomia = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("CargaRapida (minutos): ");
+		cRapida = tec.nextInt();
+		tec.nextLine();
+
+		String vCreado = marca + " " + modelo;
+
+		if(!existeVehiculo(vCreado)) {
+			Vehiculo c = new CocheElectrico(marca, modelo, aAparicion, tVida, plazas, potencia, autonomia, cRapida);
+			vehiculos.add(c);
+			System.out.println("Vehiculo añadido");
+		}
+	}
+
+	// CREA MOTO.
+	public void crearMoto() {
+		String marca;
+		String modelo;
+		int aAparicion;
+		int tVida;
+		int cilindrada;
+		boolean sidecar;
+		Random r = new Random();
+
+		System.out.println("Introduzca los siguientes datos:");
+
+		System.out.println("Marca: ");
+		marca = tec.nextLine();
+
+		System.out.println("Modelo: ");
+		modelo = tec.nextLine();
+
+		System.out.println("Año aparición: ");
+		do {
+			aAparicion = tec.nextInt();
+		}while(aAparicion < 1885);
+		tec.nextLine();
+		System.out.println("Tiempo de vida: ");
+		do
+			tVida = r.nextInt(21);
+		while(tVida>20 && tVida<5);
+		System.out.println("El tiempo de vida añadido de forma aleatoria es: " + tVida);
+
+		System.out.println("Cilindrada(cc): ");
+		cilindrada = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("CargaRapida (minutos): ");
+		sidecar = r.nextBoolean();
+
+		String vCreado = marca + " " + modelo;
+
+		if(!existeVehiculo(vCreado)) {
+			Vehiculo c = new Moto(marca, modelo, aAparicion, tVida, cilindrada, sidecar);
+			vehiculos.add(c);
+			System.out.println("Vehiculo añadido");
+		}
+	}
+
+	// COMPRUEBA SI EXISTE EL VEHICULO
+	// COMPRUEBA SI EXISTE EL VEHICULO
+	public boolean existeVehiculo(String vCreado) {
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					System.out.println("El vehiculo ya existe");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	// BORRA UN VEHICULO
+	// BORRA UN VEHICULO
+	public void bVehiculo(){
+		System.out.println("¿Que vehiculo desea borrar?");
+
+		System.out.print("Introduzca la marca: ");
+		String marca = tec.nextLine();
+		System.out.print("Introduzca la marca: ");
+		String modelo = tec.nextLine();
+
+
+		String vCreado = marca + " " + modelo;
+
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					vehiculos.remove(v);
+					System.out.println("borrado con exito");
+				}
+				System.out.println("No se ha encontrado el vehiculo");
+			}
+		}
+
+
+	}
+
+	// MUESTRA UN LISTADO DE VEHICULOS EN ORDEN ALFABETICO
+	// LISTADO DE VEHICULOS EN ORDEN ALFABETICO
+	public void lVehiculos() {
+		ArrayList <String> datos = new ArrayList <String>();
+
+		for(Vehiculo v : vehiculos) {
+			datos.add(v.getAll());
+		}
+
+		System.out.println("Lista de vehiculos ordenados alfabéticamente:\n");
+		Collections.sort(datos);
+
+		datos.forEach(n -> System.out.println(n));
+	}
+
+	// DATOS DE UN VEHICULO
+
+	// CONSULTA LOS DATOS DE UN VEHICULO
+	public void cDatos() {
+		boolean verify = false;
+		System.out.println("¿Que vehiculo desea consultar?");
+
+		System.out.print("Introduzca la marca: ");
+		String marca = tec.nextLine();
+		System.out.print("Introduzca la marca: ");
+		String modelo = tec.nextLine();
+
+
+		String vCreado = marca + " " + modelo;
+
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					verify = true;
+					System.out.println("Datos del vehiculo solicitado: ");
+					v.getAll();
+				}
+			}
+		}
+
+		if(!verify) {
+			System.out.println("El vehiculo no existe");
+		}
+	}
+
+	// LISTADO DE VEHICULOS DE UNA MARCA
+
+	// LISTADO DE VEHICULOS POR MARCA
+	public void listaMarca() {
+		boolean verify = false;
+		System.out.print("Introduzca la marca que desea buscar: ");
+		String marca = tec.nextLine();
+
+		System.out.println("Lista de vehiculos de la marca " + marca + ": ");
+		for(Vehiculo v : vehiculos) {
+			if(marca.equals(v.getMarca())) {
+				System.out.println(v.getMarcaModelo());
+				verify = true;
+			}
+		}
+		if(!verify) {
+			System.out.println("No se han encontrado vehiculos de esa marca");
+		}
+
+	}
+
+	// LISTADO COCHES POR TIPO DE COMBUSTIBLE
+
+	// LISTADO DE VEHICULOS POR TIPO DE COMBUSTIBLE
+	public void listaTCombustible() {
+		boolean verify = false;
+		int opcion = 0;
+
+		System.out.print("Introduzca el tipo de combustible que desea buscar(omita acentos): ");
+		String tComb = tec.nextLine();
+
+		if(tComb.equalsIgnoreCase("gasolina"))
+			opcion = 1;
+		else if(tComb.equalsIgnoreCase("diesel"))
+			opcion = 2;
+		else if(tComb.equalsIgnoreCase("etanol"))
+			opcion = 3;
+		else {
+			opcion = 0;
+		}
+		switch(opcion) {
+		case 1: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		case 2: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		case 3: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		default:
+			System.out.println("Tipo de combustible no válido");
+
+
+		}
+
+		if(!verify) {
+			System.out.println("No se han encontrado vehiculos que usen ese tipo de combustible");
+		}
+	}
+
+	// LISTADO DE VEHICULOS COMANZADOS A VENDER EN EL AÑO INTRODUCIDO
+
+	// LISTADO DE VEHICULOS POR AÑO DE SALIDA
+	public void listaAVenta() {
+		System.out.println("Introduce el año que desea buscar: ");
+		int annio;
+		int cont = 0;
+		do {
+			System.out.println("Introduce un año superior a 1885");
+			annio = tec.nextInt();
+		}while(annio < 1885);
+		for(Vehiculo v : vehiculos) {
+			if(v.getAAparicion() == annio) {
+				System.out.println(v.getMarcaModelo());
+				cont++;
+			}
+		}
+
+		if(cont == 0) {
+			System.out.println("Ese año no se vendio ningun vehiculo");
+		}
+		else {
+			System.out.println("El numero de vehiculos comercializados el año " + annio + "es: " + cont);
+		}
+	}
+
+	// GUARDA LOS DATOS
+	//	GUARDA LOS CAMBIOS EN EL FICHERO
+	public void modFichero() throws IOException{
+		Insertar in = new Insertar(fichero);
+		in.borrarTodo();
+		vehiculos.forEach(n -> {
+			try {
+				in.annadirVehiculo(n);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		in.finalizar();
+	}
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:501)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2022-06-11 22:38:27.755
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:501)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2022-06-11 22:38:27.757
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:501)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2022-06-11 22:38:27.766
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package ordinaria1;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * <p><i>Archivo: Menu.java</i></p>
+ * <p><b>1ª Convocatoria</b>.</p>
+ * @since 11/06/2022
+ * @version 1.0
+ * @author Victor Sanz*/
+
+public class Menu {
+
+	// Nombre del archivo de Objetos Vehiculo.
+	String fichero;
+	// Entrada de datos.
+	Scanner tec=new Scanner(System.in);
+	// Array.
+	ArrayList<Vehiculo> vehiculos=new ArrayList<Vehiculo>();
+
+	public Menu(String archivo) throws IOException {	
+		fichero=archivo;
+		// HAY QUE CREAR EL FICHERO ANTES DE INICIAR EL PROGRAMA, SINO MUESTRA UN ERROR AL INSERTAR LOS DATOS.
+		// EL FICHERO TIENE QUE SER CREADO EN LA CARPETA DEL WORKSPACE.
+		Insertar ins=new Insertar(fichero);
+		if (!ins.tieneSiguiente())
+			ins.rInsertarVehiculos(vehiculos);
+		ins.finalizar();
+		boolean fin;
+		do {
+			fin=trabajo();
+		} while (!fin);
+	}
+
+	// MENSAJE MENU.
+	private void imprimir() {
+		System.out.println("Elige una opcion: \n"
+				+"\t1.- Anadir un vehiculo.\n"
+				+"\t2.- Eliminar un vehiculo.\n"
+				+"\t3.- Listado de vehiculos.\n"
+				+"\t4.- Datos de un vehiculo.\n"
+				+"\t5.- Listar vehiculos por marca.\n"
+				+"\t6.- Listar coches por tipo de combustible.\n"
+				+"\t7.- Listar vehiculos por anio de venta.\n"
+				+"\t8.- Guardar datos (confirmar cambios).\n"
+				+"\t0.- Salir del programa.");
+	}
+
+	// MENU.
+	private boolean trabajo() throws IOException {
+		int opcion;
+		do {
+			imprimir();
+			try {
+				System.out.println("--> ");
+				opcion=tec.nextInt();
+				tec.nextLine();
+			} catch (Exception e) {
+				System.out.println("\tDebe introducir un numero entre 1 y 7.");
+				opcion=0;
+				tec.next();
+			}
+		} while ((opcion<0) || (opcion>8));
+		if (opcion==0)
+			return true;
+		switch (opcion) {
+		case 1 :
+			aVehiculo();
+			break;
+		case 2 :
+			bVehiculo();
+			break;
+		case 3 :
+			lVehiculos();
+			break;
+		case 4 :
+			cDatos();
+			break;
+		case 5 :
+			listaMarca();
+			break;
+		case 6 :
+			listaTCombustible();
+			break;
+		case 7 :
+			//listaAVenta();
+			break;
+		case 8:
+			modFichero();
+			System.out.println("\tGuardado con exito.");
+			break;
+		}
+		return false;
+	}
+	
+	// ANADE VEHICULO.
+	private void aVehiculo() {
+		boolean verify=false;
+		do {
+			System.out.println("¿Que tipo de vehiculo quiere anadir?");
+			System.out.println("\t1-. Coche de combustion.\n"
+					+"\t2-. Coche electrico \n"
+					+"\t3-. Moto");
+			int opcion=tec.nextInt();
+			tec.nextLine();
+			switch (opcion) {
+			case 1 :
+				crearCombustible();
+				verify=true;
+				break;
+			case 2:
+				crearElectrico();
+				verify=true;
+				break;
+			case 3:
+				crearMoto();
+				verify=true;
+				break;
+			default :
+				System.out.println("\tATENCION: Opcion NO reconocida por el sistema.");
+				verify=false;
+			}
+		} while (!verify);
+	}
+
+	// CREA COCHE DE COMBUSTIBLE.
+	public void crearCombustible() {
+		String marca, modelo, tipoCombustible;
+		marca=modelo=tipoCombustible="";
+		int aAparicion, tVida, plazas, potencia, cilindrada;
+		aAparicion=tVida=plazas=potencia=cilindrada=0;
+		Random r=new Random();
+		System.out.println("Introduce los siguientes datos:");
+		System.out.println("¿Marca?");
+		marca=tec.nextLine();
+		System.out.println("¿Modelo?");
+		modelo=tec.nextLine();
+		do {
+			System.out.println("¿Anio de aparicion?");
+			aAparicion=tec.nextInt();
+		}while(aAparicion<1885);
+		tec.nextLine();
+		do {
+			System.out.println("¿Tiempo de vida?");
+			tVida=r.nextInt(21);
+		} while ((tVida<5) || (tVida>20));
+		System.out.println("\tEl tiempo de vida anadido de forma aleatoria es: "+tVida+" anios");
+		do {
+			System.out.println("¿Numero de plazas?");
+			plazas=tec.nextInt();
+		} while ((plazas<1) && (plazas>7));
+		System.out.println("¿Potencia? (CV)");
+		potencia=tec.nextInt();
+		do {
+			System.out.println("¿Tipo de combustible? (gasolina, diesel, etanol)");
+			tipoCombustible=tec.nextLine();
+		}while ((!tipoCombustible.equalsIgnoreCase("gasolina")) || 
+				(!tipoCombustible.equalsIgnoreCase("diesel")) || 
+				(!tipoCombustible.equalsIgnoreCase("etanol")));
+		System.out.println("¿Cilindrada? (cc)");
+		cilindrada=tec.nextInt();
+		String vCreado=marca+" "+modelo;
+		if (!existeVehiculo(vCreado)) {
+			Vehiculo c=new CocheCombustion(marca, modelo, aAparicion, tVida, 
+					plazas, potencia, tipoCombustible, cilindrada);
+			vehiculos.add(c);
+			System.out.println("\tVehiculo anadido.");
+		}
+	}
+
+	// CREA COCHE ELECTRICO.
+	public void crearElectrico() {
+		String marca, modelo;
+		marca=modelo="";
+		int aAparicion, tVida, plazas, potencia, autonomia, cRapida;
+		aAparicion=tVida=plazas=potencia=autonomia=cRapida=0;
+		Random r=new Random();
+		System.out.println("Introduce los siguientes datos: ");
+		System.out.println("¿Marca?");
+		marca=tec.nextLine();
+		System.out.println("¿Modelo?");
+		modelo=tec.nextLine();
+		do {
+			System.out.println("¿Anio de aparicion?");
+			aAparicion=tec.nextInt();
+		} while (aAparicion<1885);
+		tec.nextLine();
+		do {
+			System.out.println("¿Tiempo de vida?");
+			tVida=r.nextInt(21);
+		} while ((tVida<5) || (tVida>20));
+		System.out.println("\tEl tiempo de vida anadido de forma aleatoria es: "+tVida+" anios");
+		do {
+			System.out.println("¿Numero de plazas?");
+			plazas=tec.nextInt();
+			tec.nextLine();
+		} while ((plazas<1) (plazas>7));
+
+		System.out.println("Potencia (CV): ");
+		potencia = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("Autonomia(KM): ");
+		autonomia = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("CargaRapida (minutos): ");
+		cRapida = tec.nextInt();
+		tec.nextLine();
+
+		String vCreado = marca + " " + modelo;
+
+		if(!existeVehiculo(vCreado)) {
+			Vehiculo c = new CocheElectrico(marca, modelo, aAparicion, tVida, plazas, potencia, autonomia, cRapida);
+			vehiculos.add(c);
+			System.out.println("Vehiculo añadido");
+		}
+	}
+
+	// CREA MOTO.
+	public void crearMoto() {
+		String marca;
+		String modelo;
+		int aAparicion;
+		int tVida;
+		int cilindrada;
+		boolean sidecar;
+		Random r = new Random();
+
+		System.out.println("Introduzca los siguientes datos:");
+
+		System.out.println("Marca: ");
+		marca = tec.nextLine();
+
+		System.out.println("Modelo: ");
+		modelo = tec.nextLine();
+
+		System.out.println("Año aparición: ");
+		do {
+			aAparicion = tec.nextInt();
+		}while(aAparicion < 1885);
+		tec.nextLine();
+		System.out.println("Tiempo de vida: ");
+		do
+			tVida = r.nextInt(21);
+		while(tVida>20 && tVida<5);
+		System.out.println("El tiempo de vida añadido de forma aleatoria es: " + tVida);
+
+		System.out.println("Cilindrada(cc): ");
+		cilindrada = tec.nextInt();
+		tec.nextLine();
+
+		System.out.println("CargaRapida (minutos): ");
+		sidecar = r.nextBoolean();
+
+		String vCreado = marca + " " + modelo;
+
+		if(!existeVehiculo(vCreado)) {
+			Vehiculo c = new Moto(marca, modelo, aAparicion, tVida, cilindrada, sidecar);
+			vehiculos.add(c);
+			System.out.println("Vehiculo añadido");
+		}
+	}
+
+	// COMPRUEBA SI EXISTE EL VEHICULO
+	// COMPRUEBA SI EXISTE EL VEHICULO
+	public boolean existeVehiculo(String vCreado) {
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					System.out.println("El vehiculo ya existe");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	// BORRA UN VEHICULO
+	// BORRA UN VEHICULO
+	public void bVehiculo(){
+		System.out.println("¿Que vehiculo desea borrar?");
+
+		System.out.print("Introduzca la marca: ");
+		String marca = tec.nextLine();
+		System.out.print("Introduzca la marca: ");
+		String modelo = tec.nextLine();
+
+
+		String vCreado = marca + " " + modelo;
+
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					vehiculos.remove(v);
+					System.out.println("borrado con exito");
+				}
+				System.out.println("No se ha encontrado el vehiculo");
+			}
+		}
+
+
+	}
+
+	// MUESTRA UN LISTADO DE VEHICULOS EN ORDEN ALFABETICO
+	// LISTADO DE VEHICULOS EN ORDEN ALFABETICO
+	public void lVehiculos() {
+		ArrayList <String> datos = new ArrayList <String>();
+
+		for(Vehiculo v : vehiculos) {
+			datos.add(v.getAll());
+		}
+
+		System.out.println("Lista de vehiculos ordenados alfabéticamente:\n");
+		Collections.sort(datos);
+
+		datos.forEach(n -> System.out.println(n));
+	}
+
+	// DATOS DE UN VEHICULO
+
+	// CONSULTA LOS DATOS DE UN VEHICULO
+	public void cDatos() {
+		boolean verify = false;
+		System.out.println("¿Que vehiculo desea consultar?");
+
+		System.out.print("Introduzca la marca: ");
+		String marca = tec.nextLine();
+		System.out.print("Introduzca la marca: ");
+		String modelo = tec.nextLine();
+
+
+		String vCreado = marca + " " + modelo;
+
+		if(!vehiculos.isEmpty()) {
+			for(Vehiculo v : vehiculos) {
+				if(vCreado.equals(v.getMarcaModelo())) {
+					verify = true;
+					System.out.println("Datos del vehiculo solicitado: ");
+					v.getAll();
+				}
+			}
+		}
+
+		if(!verify) {
+			System.out.println("El vehiculo no existe");
+		}
+	}
+
+	// LISTADO DE VEHICULOS DE UNA MARCA
+
+	// LISTADO DE VEHICULOS POR MARCA
+	public void listaMarca() {
+		boolean verify = false;
+		System.out.print("Introduzca la marca que desea buscar: ");
+		String marca = tec.nextLine();
+
+		System.out.println("Lista de vehiculos de la marca " + marca + ": ");
+		for(Vehiculo v : vehiculos) {
+			if(marca.equals(v.getMarca())) {
+				System.out.println(v.getMarcaModelo());
+				verify = true;
+			}
+		}
+		if(!verify) {
+			System.out.println("No se han encontrado vehiculos de esa marca");
+		}
+
+	}
+
+	// LISTADO COCHES POR TIPO DE COMBUSTIBLE
+
+	// LISTADO DE VEHICULOS POR TIPO DE COMBUSTIBLE
+	public void listaTCombustible() {
+		boolean verify = false;
+		int opcion = 0;
+
+		System.out.print("Introduzca el tipo de combustible que desea buscar(omita acentos): ");
+		String tComb = tec.nextLine();
+
+		if(tComb.equalsIgnoreCase("gasolina"))
+			opcion = 1;
+		else if(tComb.equalsIgnoreCase("diesel"))
+			opcion = 2;
+		else if(tComb.equalsIgnoreCase("etanol"))
+			opcion = 3;
+		else {
+			opcion = 0;
+		}
+		switch(opcion) {
+		case 1: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		case 2: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		case 3: 
+			System.out.println("Lista de vehiculos de "+ tComb + ": ");
+			for(Vehiculo v : vehiculos) {
+				/*if(tComb.equals(v.getTCombustible(v))) {
+						System.out.println(v.getMarcaModelo());
+						verify = true;
+					}*/
+			}
+			break;
+		default:
+			System.out.println("Tipo de combustible no válido");
+
+
+		}
+
+		if(!verify) {
+			System.out.println("No se han encontrado vehiculos que usen ese tipo de combustible");
+		}
+	}
+
+	// LISTADO DE VEHICULOS COMANZADOS A VENDER EN EL AÑO INTRODUCIDO
+
+	// LISTADO DE VEHICULOS POR AÑO DE SALIDA
+	public void listaAVenta() {
+		System.out.println("Introduce el año que desea buscar: ");
+		int annio;
+		int cont = 0;
+		do {
+			System.out.println("Introduce un año superior a 1885");
+			annio = tec.nextInt();
+		}while(annio < 1885);
+		for(Vehiculo v : vehiculos) {
+			if(v.getAAparicion() == annio) {
+				System.out.println(v.getMarcaModelo());
+				cont++;
+			}
+		}
+
+		if(cont == 0) {
+			System.out.println("Ese año no se vendio ningun vehiculo");
+		}
+		else {
+			System.out.println("El numero de vehiculos comercializados el año " + annio + "es: " + cont);
+		}
+	}
+
+	// GUARDA LOS DATOS
+	//	GUARDA LOS CAMBIOS EN EL FICHERO
+	public void modFichero() throws IOException{
+		Insertar in = new Insertar(fichero);
+		in.borrarTodo();
+		vehiculos.forEach(n -> {
+			try {
+				in.annadirVehiculo(n);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		in.finalizar();
+	}
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1279)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:868)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:272)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:264)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:197)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:166)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$1.run(SelectionListenerWithASTManager.java:151)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 2 2022-06-11 22:38:27.768
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.core.manipulation".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1279)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:868)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:272)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:264)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:197)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:166)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$1.run(SelectionListenerWithASTManager.java:151)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 0 2022-06-11 22:38:27.770
+!MESSAGE Error in JDT Core during AST creation
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2033)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3797)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1945)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1976)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1751)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2984)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3349)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1526)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1279)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:868)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:272)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:264)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:197)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:166)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$1.run(SelectionListenerWithASTManager.java:151)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2022-06-12 12:03:06.238 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=17.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.oomph.p2.core 2 0 2022-06-12 12:03:07.843
+!MESSAGE Failed to register the thread safe credentials providers: 'java.util.Map org.eclipse.core.internal.runtime.AdapterManager.getFactories()'
+
+!ENTRY org.eclipse.jface 2 0 2022-06-12 12:03:11.371
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-06-12 12:03:11.371
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1626bddf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@29532e91,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-06-12 12:03:13.450
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\PC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2022-06-12 13:13:19.948 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=17.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.oomph.p2.core 2 0 2022-06-12 13:13:21.235
+!MESSAGE Failed to register the thread safe credentials providers: 'java.util.Map org.eclipse.core.internal.runtime.AdapterManager.getFactories()'
+
+!ENTRY org.eclipse.jface 2 0 2022-06-12 13:13:23.191
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-06-12 13:13:23.191
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2890e479,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6eb00cbe,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-06-12 13:13:25.435
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\PC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2022-06-12 13:50:22.868 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=17.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.oomph.p2.core 2 0 2022-06-12 13:50:24.274
+!MESSAGE Failed to register the thread safe credentials providers: 'java.util.Map org.eclipse.core.internal.runtime.AdapterManager.getFactories()'
+
+!ENTRY org.eclipse.jface 2 0 2022-06-12 13:50:26.620
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-06-12 13:50:26.620
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1626bddf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@29532e91,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-06-12 13:50:29.723
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\PC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

@@ -1,5 +1,4 @@
 package eva03.ejercicio1;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -7,156 +6,161 @@ import java.util.Scanner;
 
 /**
  * <p><i>Archivo: MenuAgenda.java</i></p>
- * @since 23/05/2022
+ * </p><b>Examen 3EVA</b>.</p>
+ * @since 11/06/2022
  * @version 1.0
  * @author Victor Sanz*/
 
-public class MenuAgenda { // Clase MenuAgenda.
+public class MenuAgenda {
 
-	String fichero="H:"+File.separator+"eclipse_myworkspace"+File.separator
-			+"Examenes"+File.separator+"src"+File.separator+"eva03"
-			+File.separator+"agenda.dat"; // Nombre del fichero que se cargara en la coleccion.
+	String fichero;
+	Agenda agenda;
+	String menu="Elige una opcion: \n"
+			+"\t1-. Anadir un contacto en la agenda.\n"
+			+"\t2-. Borrar un contacto en la agenda.\n"
+			+"\t3-. Listar en orden alfabetico todos los contactos "
+			+"de la agenda.\n"
+			+"\t4-. Buscar por nombre.\n"
+			+"\t5-. Anadir un telefono a un contacto.\n"
+			+"\t6-. Borrar un telefono de un contacto.\n"
+			+"\t7-. Buscar por telefono.\n"
+			+"\t0-. Salir del programa.";
+	Scanner teclado;
+	PrintStream out;
 
-	Agenda agenda=new Agenda(fichero); // Instanciacion de un nuevo objeto de la clase Agenda.
-
-	// Objeto de tipo String que contiene el menu.
-	String menu="1-. Anadir un contacto.\r2-. Borrar un contacto.\r3-. Listado en orden alfabetico.\r"
-			+"4-. Buscar por nombre.\r5-. Anadir un telefono.\r6-. Borrar un telefono.\r"
-			+"7-. Buscar por telefono.\r0-. Salir."; 
-
-	Scanner teclado=new Scanner(System.in); // Nuevo Scanner;
-
-	// Inicializacion de la secuencia de caracteres.
-	PrintStream out=null; // Imprimir datos a una corriente (flujo) de datos determinada.
-
-	public MenuAgenda() { // Constructor de la clase MenuAgenda.
-		int opcion;
+	public MenuAgenda(String nombre_f) {
+		this.fichero=nombre_f;
+		agenda=new Agenda(nombre_f);
+		teclado=new Scanner(System.in);
+		out=null;
+		int opcion=0;
 		do {
-			System.out.println(menu); // Imprime el menu por pantalla.
+			System.out.println(menu);
 			do {
-				System.out.println("-->");
+				System.out.println("--> ");
 				opcion=teclado.nextInt();
 				teclado.nextLine();
 			} while (!(opcion<=7 && opcion>=0));
-			switch(opcion) {
-			case 1 : 
-				anadirContacto(); // Anadir un contacto.
+			switch (opcion) {
+			case 1 :
+				anadirContacto();
 				break;
-			case 2 : 
-				borrarContacto(); // Borrar un contacto.
+			case 2 :
+				borrarContacto();
 				break;
-			case 3 : 
-				listadoOrdenado(); // Listar contactos en orden alfabetico.
+			case 3 :
+				listadoOrdenado();
 				break;
-			case 4 : 
-				buscaNombre(); // Buscar por nombre.
+			case 4 :
+				buscarNombre();
 				break;
-			case 5 : 
-				anadirTelefono(); // Anadir telefono.
+			case 5 :
+				anadirTelefono();
 				break;
-			case 6 : 
-				borrarTelefono(); // Borrar telefono.
+			case 6 :
+				borrarTelefono();
 				break;
-			case 7 : 
-				buscaTelefono(); // Buscar por telefono.
+			case 7 :
+				buscarTelefono();
 				break;
+			default :
 			}
-		} while (opcion!=0); // 0-. Salir del programa.
+		} while (opcion!=0);
 	}
 
-	// Pedira al anadir un contacto anadir (si no existe previamente) 
-	// un telefono automaticamente.
-	private void anadirContacto(){ // Llamada al metodos para anadir un contacto.
-		// Nombre, apellido, diferentes numeros de telefono y sus tipos.
+	// Pedira al anadir un contacto anadir (si no existe ya) un 
+	// telefono automaticamente
+	public void anadirContacto() {
 		String nombre, telefono, tipo;
+		nombre=telefono=tipo="";
 		do {
-			System.out.println("Nombre del contacto a anadir: ");
+			System.out.println("¿Nombre del contacto?");
 			nombre=teclado.nextLine();
-			// Comprobar si ya existe un contacto con el mismo nombre:
-			if (agenda.buscaNombre(nombre)!=null)
-				System.out.println("Ya existe otro contacto con este nombre.");
-		} while (agenda.buscaNombre(nombre)!=null);
+			if (agenda.buscarNombre(nombre)!=null)
+				System.out.println("\tYa existe otro contacto con este nombre.");
+		} while (agenda.buscarNombre(nombre)!=null);
 		do {
-			System.out.println("Telefono del contacto: ");
-			telefono=teclado.nextLine();
-		} while (!Telefono.telefonoValido(telefono)); // Llamada al metodo para validar el numero de telefono.
-		System.out.println("Tipo: ");
-		tipo=teclado.nextLine();
-		agenda.addContacto(nombre, telefono, tipo); // Entrada de parametros.
-		transaccion();
-	}
-
-	private void borrarContacto() { // Llamada al metodo para borrar un contacto.
-		String nombre;
-		System.out.println("Nombre: ");
-		nombre=teclado.nextLine();
-		if(!agenda.delContacto(nombre))
-			System.out.println("No se pudo eliminar el contacto.");
-		transaccion();
-	}
-
-	private void listadoOrdenado() { // Llamada al metodo para listar en orden alfabetico.
-		System.out.println(agenda.listadoAZ());
-	}
-
-	private void buscaNombre() { // Llamada al metodo para buscar por nombre.
-		String nombre;
-		System.out.println("Nombre: ");
-		nombre=teclado.nextLine();
-		System.out.println(
-				(agenda.buscaNombre(nombre)!=null)?agenda.buscaNombre(nombre):
-				"No existe ningun contacto con ese nombre.");
-	}
-
-	private void anadirTelefono() { // Llamada al metodo para anadir telefono. 
-		String nombre, telefono, tipo;
-		do {
-			System.out.println("Nombre del contacto: ");
-			nombre=teclado.nextLine();
-		} while (agenda.buscaNombre(nombre)==null);
-		do {
-			System.out.println("Telefono: ");
+			System.out.println("¿Telefono?");
 			telefono=teclado.nextLine();
 		} while (!Telefono.telefonoValido(telefono));
-		System.out.println("Tipo: ");
+		System.out.println("¿Tipo?");
 		tipo=teclado.nextLine();
-		agenda.addTelefono(nombre, telefono, tipo); // Entrada de parametros.
+		agenda.anadirContacto(nombre, telefono, tipo);
 		transaccion();
 	}
 
-	private void borrarTelefono() { // Llamada al metodo para borrar telefono. 
+	public void borrarContacto() {
+		String nombre="";
+		System.out.println("¿Nombre?");
+		nombre=teclado.nextLine();
+		if (!agenda.borrarContacto(nombre))
+			System.out.println("\tNo se pudo eliminar el contacto.");
+		transaccion();
+	}
+
+	private void listadoOrdenado() {
+		System.out.println(agenda.listadoOrdenado());
+	}
+
+	private void buscarNombre() {
+		String nombre="";
+		System.out.println("¿Nombre?");
+		nombre=teclado.nextLine();
+		System.out.println((agenda.buscarNombre(nombre)!=null)?
+				agenda.buscarNombre(nombre):"\tNo existe ningun contacto "
+				+"con ese nombre.");
+	}
+
+	private void anadirTelefono() {
+		String nombre, telefono, tipo;
+		nombre=telefono=tipo="";
+		do {
+			System.out.println("¿Nombre?");
+			nombre=teclado.nextLine();
+		} while (agenda.buscarNombre(nombre)==null);
+		do {
+			System.out.println("¿Telefono?");
+			telefono=teclado.nextLine();		
+		} while (!Telefono.telefonoValido(telefono));
+		System.out.println("¿Tipo?");
+		tipo=teclado.nextLine();
+		agenda.anadirTelefono(nombre, telefono, tipo);
+		transaccion();
+	}
+
+	private void borrarTelefono() {
 		String nombre, telefono;
+		nombre=telefono="";
 		do {
-			System.out.println("Nombre del contacto: ");
+			System.out.println("¿Nombre?");
 			nombre=teclado.nextLine();
-		} while (agenda.buscaNombre(nombre)==null);
+		} while (agenda.buscarNombre(nombre)==null);
 		do {
-			System.out.println("Telefono: ");
+			System.out.println("¿Telefono?");
 			telefono=teclado.nextLine();
 		} while (!Telefono.telefonoValido(telefono));
-		agenda.delTelefono(nombre, telefono); // Entrada de parametros.
+		agenda.borrarTelefono(nombre, telefono);
 		transaccion();
 	}
 
-	private void buscaTelefono() {
-		String telefono;
-		System.out.println("Telefono: ");
+	private void buscarTelefono() {
+		String telefono="";
+		System.out.println("¿Telefono?");
 		telefono=teclado.nextLine();
-		System.out.println(agenda.buscaTelefono(telefono));
+		System.out.println(agenda.buscarTelefono(telefono));
 	}
 
 	// Plasma la informacion de todo el programa en el fichero.
-	// Siempre que se produzca un cambio en la agenda, se guardara (escribira) el contenido de la 
-	// agenda en el mismo fichero que se lee al inicio del programa. 
 	private void transaccion() {
 		try {
-			out=new PrintStream(new FileOutputStream(fichero, false));
-			out.print(agenda);
-		}catch (FileNotFoundException e) {}
-		finally {
-			if (out!=null) 
+			out=new PrintStream(
+					new FileOutputStream(fichero, false));
+		} catch (FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
+		} finally {
+			if (out!=null)
 				out.close();
 		}
 	}
 
-} // Fin de la clase MenuAgenda.
+}

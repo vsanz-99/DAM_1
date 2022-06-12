@@ -18,29 +18,25 @@ import java.util.Scanner;
 public class EntradasCine {
 
 	public static void main(String[] args) {
-
-		int personas; int diaSemana=0; double precio_total=0; int opcion; 
-
-		@SuppressWarnings("resource")
+		int personas, diaSemana, opcion;
+		personas=diaSemana=opcion=0;
+		double precio_total=0.0d;
 		Scanner teclado=new Scanner(System.in);
-
 		System.out.println("\tCALCULAR EL PRECIO DE LAS ENTRADAS DE CINE.");
 		System.out.println("\t-------------------------------------------");
 		System.out.println();
-
 		do {
-			System.out.println("\tIntroduce el numero de personas: ");
+			System.out.println("Introduce el numero de personas: ");
 			personas=Integer.parseInt(teclado.nextLine());
 		} while (personas<=0 || personas>10);
-
 		do {
-			System.out.println("\t(0)Lunes; (1)Martes; (2)Miercoles; (3)Jueves; (4)Viernes; (5)Sabado; (6)Domingo");
-			System.out.println("\tIntroduce el dia de la semana: ");
+			System.out.println("(0)Lunes; (1)Martes; (2)Miercoles; (3)Jueves; "
+					+"(4)Viernes; (5)Sabado; (6)Domingo");
+			System.out.println("Introduce el dia de la semana: ");
 			diaSemana=teclado.nextInt();
 		} while (diaSemana<0 || diaSemana>6);
-
 		switch (diaSemana) {
-		case 0, 1, 4, 5, 6:
+		case 0, 1, 4, 5, 6 :
 			precio_total=(double)personas*8;
 		break;
 		case 2 :
@@ -59,10 +55,9 @@ public class EntradasCine {
 			break;
 		default :
 		}
-
 		try {
 			do {
-				System.out.println("\t¿Tiene tarjeta CinePas? (1)Si (0)No");
+				System.out.println("¿Tiene tarjeta CinePas? (1)Si (0)No");
 				opcion=teclado.nextInt();
 			} while (opcion!=0 && opcion!=1 );
 			if (opcion==1) {
@@ -74,9 +69,8 @@ public class EntradasCine {
 		} catch(InputMismatchException e) {
 			e.printStackTrace();
 		}
-
+		teclado.close();
 		System.out.println("\tPrecio de las entrada: "+precio_total+" euros");
-
 	}
 
 }

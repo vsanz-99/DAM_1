@@ -14,22 +14,15 @@ import java.util.Scanner;
 public class TiempoCaida {
 
 	public static void main(String[] args) {
-
 		int h=0; double g=9.81; double t=0;
-
-		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);
-
-		System.out.println("\t¿A que altura se encuentra el objeto en cuestion (metros)?");
-		h=teclado.nextInt();
-
+		System.out.println("¿A que altura se encuentra el objeto en cuestion (metros)?");
+		h=Integer.parseInt(teclado.nextLine());
+		teclado.close();
 		t=Math.sqrt((2*h)/g);
-
 		DecimalFormat df=new DecimalFormat("###.###");
-
 		System.out.println("\tEl objeto situado a una altura de "+h+" metros tardara "+df.format(t)+
 				" segundos en caer al suelo.");
-
 	}
 
 }

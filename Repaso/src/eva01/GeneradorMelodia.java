@@ -19,11 +19,9 @@ package eva01;
 public class GeneradorMelodia {
 
 	public static void main(String[] args) {
-
 		int hueco=4*(int)(Math.random()*7+1);
-		String notas="";
-		String primeraNota="";
-
+		String notas, primeraNota;
+		notas=primeraNota="";
 		for (int i=1; i<=hueco; i++) {
 			int nota=(int)(Math.random()*7);
 			switch (nota) {
@@ -63,7 +61,6 @@ public class GeneradorMelodia {
 				System.out.print("| ");
 			}
 		}
-
 	}
 
 }

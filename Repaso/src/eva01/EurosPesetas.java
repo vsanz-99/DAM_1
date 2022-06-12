@@ -12,20 +12,16 @@ import java.util.Scanner;
 public class EurosPesetas {
 
 	public static void main(String[] args) {
-
-		double euros=0; int pesetas=0;
-
-		@SuppressWarnings("resource")
+		double euros=0.0d; int pesetas=0;
 		Scanner teclado=new Scanner(System.in);
-
-		System.out.println("\tBienvenido al Conversor Euros Pesetas. Introduce la cantidad de euros que desea convertir a pesetas: ");
-		System.out.println("\t-----------------------------------------------------------------------------------------------------");
-		euros=teclado.nextDouble();
-
+		do {
+			System.out.println("\tBienvenido al Conversor Euros Pesetas. Introduce la cantidad de euros que desea convertir a pesetas: ");
+			System.out.println("\t-----------------------------------------------------------------------------------------------------");
+			euros=Double.parseDouble(teclado.nextLine());
+		} while (euros<=0);
+		teclado.close();
 		pesetas=(int)(euros*166.386);
-
 		System.out.print("\t"+euros+" euros son "+pesetas+" pesetas.");
-
 	}
 
 }

@@ -12,29 +12,21 @@ import java.util.Scanner;
 public class Horoscopo {
 
 	public static void main(String[] args) {
-
-		int dia=0; int mes=0; String signo="";
-
-		@SuppressWarnings("resource")
+		int dia, mes;
+		dia=mes=0;
+		String signo="";
 		Scanner teclado=new Scanner(System.in);
-
 		System.out.println("\tMOSTRAR HOROSCOPO.");
 		System.out.println("\t------------------");
-
 		do {
-
-			System.out.println("\tIntroduce el dia en el que nacio: ");
+			System.out.println("Introduce el dia en el que nacio: ");
 			dia=teclado.nextInt();
-
 		} while (dia<=0 || dia>=32);
-
 		do {
-
-			System.out.println("\tIntroduce el mes en el que nacio: ");
+			System.out.println("Introduce el mes en el que nacio: ");
 			mes=teclado.nextInt();
-
 		} while (mes<=0 || mes>=13);
-
+		teclado.close();
 		switch (mes) {
 		case 1 :
 			if (dia>21) {
@@ -122,9 +114,7 @@ public class Horoscopo {
 			break;
 		default :
 		}
-
 		System.out.println("\tUsted es "+signo+".");
-
 	}
 
 }

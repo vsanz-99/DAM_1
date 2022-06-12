@@ -14,17 +14,13 @@ import java.util.Scanner;
 public class IntroduceHora {
 
 	public static void main(String[] args) {
-
 		int hora=0;
-
-		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);
-
 		do {
-			System.out.println("\t¿Que hora es?");
-			hora=teclado.nextInt();
+			System.out.println("¿Que hora es?");
+			hora=Integer.parseInt(teclado.nextLine());
 		} while (hora<0 || hora>23);
-
+		teclado.close();
 		if (hora>=6 && hora<=12) {
 			System.out.print("\tBuenos dias.");
 		} else if (hora>=13 && hora<=20) {
@@ -32,7 +28,6 @@ public class IntroduceHora {
 		} else {
 			System.out.print("\tBuenas noches.");
 		}
-
 	}
 
 }

@@ -14,19 +14,16 @@ import java.util.Scanner;
 public class ConversorGenerico {
 
 	public static void main(String[] args) {
-
 		int numero, exp, digito, base;
+		numero=exp=digito=base=0;
 		double binario, octal;
-		@SuppressWarnings("resource")
+		binario=octal=0.0d;
 		Scanner sc=new Scanner(System.in);
-
 		do { 
 			System.out.print("Introduce un numero entero >= 0: ");                                                
 			numero=sc.nextInt();
 		} while (numero<0);
-
 		System.out.println();
-
 		do {
 			System.out.println("¿A que base desea convertirlo?\n"
 					+"\t1-. Binario.\n"
@@ -35,7 +32,7 @@ public class ConversorGenerico {
 					+"\t0-. Salir.");
 			base=sc.nextInt();
 		} while ((base<0) || (base>3));
-
+		sc.close();
 		switch (base) {
 		case 1 :
 			exp=0;
@@ -78,9 +75,6 @@ public class ConversorGenerico {
 			System.out.println("\tFin del programa.");
 			System.exit(0);
 		}
-
-		sc.close();
-
 	}
 
 }

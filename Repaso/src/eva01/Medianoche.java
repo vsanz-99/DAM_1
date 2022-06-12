@@ -12,28 +12,22 @@ import java.util.Scanner;
 public class Medianoche {
 
 	public static void main(String[] args) {
-
-		int hora=0; int minuto=0;
-
-		@SuppressWarnings("resource")
+		int hora, minuto;
+		hora=minuto=0;
 		Scanner teclado=new Scanner(System.in);
-
 		do {
-			System.out.println("\tHora (hh): ");
+			System.out.println("Hora (hh): ");
 			hora=Integer.parseInt(teclado.nextLine());
 		} while (hora<0 || hora>23);
-
 		do {
-			System.out.println("\tMinutos (mm): ");
+			System.out.println("Minutos (mm): ");
 			minuto=Integer.parseInt(teclado.nextLine());
 		} while (minuto<0 || minuto>59);
-
+		teclado.close();
 		int segundosTranscurridos=(hora*3600)+(minuto*60);
 		int segundosHastaMedianoche=(24*3600)-segundosTranscurridos;
-
 		//System.out.println("\tDesde las "+hora+":"+minuto+" hasta la medianoche faltan "+segundosHastaMedianoche+" segundos.");
 		System.out.printf("\tDesde las %02d:%02d hasta la medianoche faltan %d segundos.", hora, minuto, segundosHastaMedianoche);
-
 	}
 
 }

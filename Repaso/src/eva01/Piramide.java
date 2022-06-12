@@ -14,42 +14,35 @@ import java.util.Scanner;
 public class Piramide {
 
 	public static void main(String[] args) {
-
 		int numFilas=0;
 		char r=0;
-
-		@SuppressWarnings("resource")
 		Scanner teclado=new Scanner(System.in);
-
-		System.out.println("\tPIRAMIDE DE CARACTERES.");
-		System.out.println("\t-----------------------");
+		System.out.println("PIRAMIDE DE CARACTERES.");
+		System.out.println("-----------------------");
 		System.out.println();
-
-		System.out.println("\tIntroduce un caracter de relleno: ");
+		System.out.println("Introduce un caracter de relleno: ");
 		r=teclado.next().charAt(0);
 		System.out.println();
-
-		System.out.println("\tIntroduce la altura de la piramide: ");
+		System.out.println("Introduce la altura de la piramide: ");
 		numFilas=teclado.nextInt();
 		System.out.println();
-
-		System.out.println("\tElije un tipo de piramide: ");
+		System.out.println("Elije un tipo de piramide: ");
 		System.out.println("\t1. Con el vertice hacia arriba.");
 		System.out.println("\t2. Con el vertice hacia abajo.");
 		System.out.println("\t3. Con el vertice hacia la izquierda.");
 		System.out.println("\t4. Con el vertice hacia la derecha.");
 		int opcion=teclado.nextInt();
-
+		teclado.close();
 		switch (opcion) {
 		case 1 :
-			// Vertice hacia arriba
+			// Vertice hacia arriba.
 			System.out.println();
 			for (int altura=1; altura<=numFilas; altura++) {
-				// Espacios en blanco
+				// Espacios en blanco.
 				for (int blancos=1; blancos<=numFilas-altura; blancos++) {
 					System.out.print(" ");
 				}
-				// Caracteres
+				// Caracteres.
 				for (int caracteres=1; caracteres<=(altura*2)-1; caracteres++) {
 					System.out.print(r);
 				}
@@ -57,14 +50,14 @@ public class Piramide {
 			}
 			break;
 		case 2 :
-			// Vertice hacia abajo
+			// Vertice hacia abajo.
 			System.out.println();
 			for (int numBlancos=0, numCaracteres=(numFilas*2)-1; numCaracteres>0; numBlancos++, numCaracteres-=2) {
-				// Espacios en blanco
+				// Espacios en blanco.
 				for (int i=0; i<numBlancos; i++) {
 					System.out.print(" ");
 				}
-				// Caracteres
+				// Caracteres.
 				for (int j=numCaracteres; j>0; j--) {
 					System.out.print(r);
 				}
@@ -72,7 +65,7 @@ public class Piramide {
 			}
 			break;
 		case 3 :
-			// Vertice a la izquierda
+			// Vertice a la izquierda.
 			final int puntoMedio=Math.round(numFilas/2)+1;
 			String relleno=" ".repeat(puntoMedio);
 			System.out.println();
@@ -87,7 +80,7 @@ public class Piramide {
 			}
 			break;
 		case 4 :
-			// Vertice a la derecha
+			// Vertice a la derecha.
 			System.out.println();
 			for (int i=0; i<numFilas; i++) {            
 				for (int j=0; j<i+1; j++) {
@@ -104,7 +97,6 @@ public class Piramide {
 			break;
 		default :
 		}
-
 	}
 
 }

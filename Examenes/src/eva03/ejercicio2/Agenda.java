@@ -8,17 +8,18 @@ import java.util.Scanner;
 
 /**
  * <p><i>Archivo: Agenda.java</i></p>
- * @since 23/05/2022
+ * </p><b>Examen 3EVA</b>.</p>
+ * @since 11/06/2022
  * @version 1.0
  * @author Victor Sanz*/
 
-public class Agenda { // Clase Agenda.
+
+public class Agenda {
 
 	ArrayList<Contacto> contactos=new ArrayList<Contacto>();
 	Scanner in=null;
 
-	// Este constructor intentara abrir el fichero y si lo consigue volcara todos los datos en el ArrayList.
-	public Agenda(String fichero) { // Constructor de la clase Agenda.
+	public Agenda(String fichero) {
 		try {
 			in=new Scanner(
 					new BufferedReader(
@@ -27,19 +28,19 @@ public class Agenda { // Clase Agenda.
 				contactos.add(
 						new Contacto(in.nextLine()));
 			}
-		} catch (FileNotFoundException e) {
-			System.out.println("\tError: fichero no encontrado.");
-		}
-		finally {
-			if (in!=null)
+		} catch (FileNotFoundException fnfe) {
+			fnfe.printStackTrace();
+		} finally {
+			if (in !=null)
 				in.close();
 		}
 	}
 
-	// Devolvera true si NO existe otro contacto con ese nombre y false si SI y no lo anadira.
-	public boolean addContacto(String nombre, String telefono, String tipo) {
-		for (Contacto x : contactos) {
-			if (x.nombre.equals(nombre))
+	// Devolvera true si NO existe otro contacto con ese nombre y false si SI existe y, 
+	// en consecuencia, no lo anadira.
+	public boolean anadirContacto(String nombre, String telefono, String tipo) {
+		for(Contacto c : contactos) {
+			if (c.nombre.equals(nombre))
 				return false;
 		}
 		contactos.add(
@@ -47,75 +48,72 @@ public class Agenda { // Clase Agenda.
 		return true;
 	}
 
-	// Devolvera true si SI existe el contacto eliminandolo y false si NO existe. 
-	public boolean delContacto(String nombre) {
-		for (Contacto x : contactos) {
-			if (x.nombre.equals(nombre)) {
-				contactos.remove(x);
+	// Devolvera true si SI existe el contacto, eliminandolo, y false si NO existe.
+	public boolean borrarContacto(String nombre) {
+		for (Contacto c : contactos) {
+			if (c.nombre.equals(nombre)) {
+				contactos.remove(c);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public String listadoAZ() { // Ordena los contactos.
+	public String listadoOrdenado() {
 		String salida="";
 		ArrayList<Contacto> ordenados=new ArrayList<Contacto>();
-		for (Contacto x : contactos) {
-			ordenados.add(x);
+		for (Contacto c : contactos) {
+			ordenados.add(c);
 		}
 		Collections.sort(ordenados);
-		for (Contacto x : ordenados) {
-			salida+=x+"\r";
+		for (Contacto c : ordenados) {
+			salida+=c+"\n";
 		}
 		return salida;
 	}
 
-	// Devolvera el objeto con el nombre buscado o null si NO lo encuentra.
-	public Contacto buscaNombre(String nombre) {
-		for (Contacto x : contactos) {
-			if (x.nombre.equals(nombre))
-				return x;
+	// Devolvera el objeto con el nombre buscado o null si no lo encuentra.
+	public Contacto buscarNombre(String nombre) {
+		for (Contacto c : contactos) {
+			if (c.nombre.equals(nombre))
+				return c;
 		}
 		return null;
 	}
 
-	public void addTelefono(String nombre, String telefono, String tipo) {
-		for (Contacto x : contactos) {
-			if (x.nombre.equals(nombre))
-				x.addTelefono(telefono, tipo);
+	public void anadirTelefono(String nombre, String telefono, String tipo) {
+		for (Contacto c : contactos) {
+			if (c.nombre.equals(nombre))
+				c.anadirTelefono(telefono, tipo);
 		}
 	}
 
-	public void delTelefono(String nombre, String telefono) {
-		int index=0;
-		boolean encontrado=false;
-		for (Contacto x : contactos) {
-			if (encontrado=x.nombre.equals(nombre))
-				index=contactos.indexOf(x);
+	public void borrarTelefono(String nombre, String telefono) {
+		for (Contacto c: contactos) {
+			if (c.nombre.equals(nombre))
+				c.borrarTelefono(telefono);		
 		}
-		if (encontrado)
-			contactos.get(index).delTelefono(telefono);
 	}
 
-	public String buscaTelefono(String telefono) {
+	public String buscarTelefono(String telefono) {
 		String salida="";
-		for (Contacto x : contactos) {
-			for (Telefono y : x.numeros) {
-				if (y.numero.equals(telefono))
-					salida+=x.nombre+"\r";
+		for (Contacto c : contactos) {
+			for (Telefono t : c.numeros) {
+				if (t.numero.equals(telefono))
+					salida+=c.nombre+"\n";
 			}
 		}
-		return ((salida.equals(""))?"Nadie tiene este numero.":"Personas con este telefono: \r"+salida);
-	}	
+		return ((salida.equals(""))?"\tNadie tiene este numero.":"Personas con este telefono: \n"
+				+salida);
+	}
 
 	@Override
 	public String toString() {
 		String salida="";
-		for (Contacto x : contactos) {
-			salida+=x+"\r";
+		for (Contacto c : contactos) {
+			salida+=c+"\n";
 		}
 		return salida;
 	}
 
-} // Fin de la clase Agenda.
+}

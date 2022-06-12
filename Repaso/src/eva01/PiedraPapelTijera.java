@@ -14,27 +14,22 @@ import java.util.Scanner;
 public class PiedraPapelTijera {
 
 	public static void main(String[] args) {
-
-		int seleccionJugador1=0; int seleccionJugador2=0;
-		int opcion=0;
-
-		@SuppressWarnings("resource")
+		int seleccionJugador1, seleccionJugador2, opcion;
+		seleccionJugador1=seleccionJugador2=opcion=0;
 		Scanner teclado=new Scanner(System.in);
-
 		System.out.println("\tJuego Piedra-Papel-Tijera.");
 		System.out.println("\t--------------------------");
 		System.out.println();
-
 		do {
-			System.out.println("\t[1=Piedra, 2=Papel, 3=Tijera]");
+			System.out.println("[1=Piedra, 2=Papel, 3=Tijera]");
 			System.out.println();
 			do {
-				System.out.println("\tSeleccion Jugador1: ");
-				seleccionJugador1=teclado.nextInt();
+				System.out.println("Seleccion Jugador1: ");
+				seleccionJugador1=Integer.parseInt(teclado.nextLine());
 			} while (seleccionJugador1<1 || seleccionJugador1>3);
 			do {
-				System.out.println("\tSeleccion Jugador2: ");
-				seleccionJugador2=teclado.nextInt();
+				System.out.println("Seleccion Jugador2: ");
+				seleccionJugador2=Integer.parseInt(teclado.nextLine());
 			} while (seleccionJugador2<1 || seleccionJugador2>3);
 			switch (seleccionJugador1) {
 			case 1 :
@@ -92,14 +87,14 @@ public class PiedraPapelTijera {
 			}
 			try {
 				do {
-					System.out.println("\t¿Continuar? (1)Si (0)No");
-					opcion=teclado.nextInt();
+					System.out.println("¿Continuar? (1)Si (0)No");
+					opcion=Integer.parseInt(teclado.nextLine());
 				} while (opcion!=1 && opcion!=0);
 			} catch(InputMismatchException e) {
 				System.out.println("\tError: opcion desconocida.");
 			}
 		} while (opcion!=0);
-
+		teclado.close();
 	}
 
 }

@@ -16,37 +16,25 @@ import java.text.DecimalFormat;
 public class NotaExamen {
 
 	public static void main(String[] args) {
-
-		double first_exam=0; double second_exam=0; double eva02=0;
-
-		@SuppressWarnings("resource")
+		double first_exam, second_exam, eva02;
+		first_exam=second_exam=eva02=0;
 		Scanner teclado=new Scanner(System.in);
-
 		System.out.println("\tCALCULO DE LA NOTA DEL SEGUNDO EXAMEN.");
 		System.out.println("\t--------------------------------------");
 		System.out.println();
-
 		do {
-
 			System.out.println("\tIntroduce la nota del primer examen: ");
 			first_exam=teclado.nextDouble();
-
 		} while (first_exam<=0);
-
 		do {
-
 			System.out.println("\t¿Que nota quieres sacar en la segunda evaluacion?");
 			eva02=teclado.nextDouble();
-
 		} while (eva02<=0);
-
+		teclado.close();
 		second_exam=(eva02-first_exam*0.3)/0.7;
-
 		DecimalFormat df=new DecimalFormat("###.##");
-
 		System.out.println("\tPara tener un "+eva02+" en la segunda evaluacion necesitas sacar un "+df.format(second_exam)+
 				" en el segundo examen.");
-
 	}
 
 }
